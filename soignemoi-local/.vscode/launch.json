@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Listen for Xdebug",
+        "type": "php",
+        "request": "launch",
+        "port": 9003,
+        "pathMappings": {
+          "/home/gerard/Documents/Cours/Studi/Bachelor_Developpeur_PHP-Symfony/Projets/soignemoi-symfony/soignemoi-local/soignemoi-locoa-2/": "${workspaceFolder}"
+        },
+        "xdebugSettings": {
+          "max_children": 512,
+          "max_data": 1024,
+          "max_depth": 5
+        }
+      }
+    ]
+  }
+  
