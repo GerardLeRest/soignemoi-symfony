@@ -1,4 +1,3 @@
-Soigneme-local 
-
-- lancer le serveur Symfony:
-symfony server:start
+version1:
+- création des entités
+- création du controlleur SecretariatControlleur

@@ -28,7 +28,7 @@ final class SecretariatController extends AbstractController
     }
 
     //tous
-    #[Route('/tous', name: 'secretariat.tous')]
+    #[Route('soignemoi-local/tous', name: 'secretariat.tous')]
     public function donneesTous (Request $request) : Response
     {
         try{
@@ -47,7 +47,7 @@ final class SecretariatController extends AbstractController
     }
 
     // Entrées
-    #[Route('/entrees', name: 'secretariat.entrees')]
+    #[Route('soignemoi-local/entrees', name: 'secretariat.entrees')]
     public function donneesEntrees (Request $request) : Response
     {
         try{
@@ -67,7 +67,7 @@ final class SecretariatController extends AbstractController
     }
    
      // Sorties
-     #[Route('/sorties', name: 'secretariat.sorties')]
+     #[Route('soignemoi-local/sorties', name: 'secretariat.sorties')]
      public function donneesSorties (Request $request) : Response
     {
         try{
@@ -85,7 +85,7 @@ final class SecretariatController extends AbstractController
     }
     
     //---------------------------------------------------------------------------------------------------
-    #[Route('/details/{id}', name: 'secretariat.details')]
+    #[Route('soignemoi-local/details/{id}', name: 'secretariat.details')]
     public function details (int $id, Request $request) : Response
     {
         try{
@@ -100,6 +100,7 @@ final class SecretariatController extends AbstractController
             $qb->setParameter('idPatient', $id);    
             $query = $qb->getQuery();
             $this->donnees = $query->getResult();
+            
            // Transformation des dates sur tous les enregistrements
             foreach ($this->donnees as &$donnee) {
                 if ($donnee['dateDebut'] instanceof \DateTime) {   

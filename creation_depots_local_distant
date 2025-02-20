@@ -1,0 +1,28 @@
+CRÉATION D’UN DÉPÔT
+
+
+1 - Clonage du dépôt distant :
+git clone git@github.com:GerardLeRest/soignemoi-symfony.git
+
+2 – création des branches locales : 
+git checkout -b secretariat
+git checkout -b medecin
+git checkout
+
+3 – Création des branches distantes
+git push origin secretariat
+git push origin medecin
+git push origin soignemoi-db
+git push origin soignemoi-local
+
+4-Copie de dossiers/fichiers sur les branches (ex: secretariat
+git checkout secretariat
+git status
+git add secretariat/
+git commit -m "Ajout du dossier secretariat"
+push origin secretariat
+
+5-Effacer les branches locales et à distance
+git checkout main
+git branch -d soignemoi-local
+git push origin --delete soignemoi-local
