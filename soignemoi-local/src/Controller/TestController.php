@@ -16,7 +16,7 @@ public function __construct(EntityManagerInterface $emi)
     $this->emi = $emi;
 }
 
-    #[Route('soignemoi-local/formulaireAvis', name: 'route_test')]
+    #[Route('soignemoi-local/page', name: 'test.page', methods: ['GET'])]
     public function verification(): Response
     {
         echo "controlleur";

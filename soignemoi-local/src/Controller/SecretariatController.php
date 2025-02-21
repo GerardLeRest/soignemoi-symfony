@@ -28,7 +28,7 @@ final class SecretariatController extends AbstractController
     }
 
     //tous
-    #[Route('soignemoi-local/tous', name: 'secretariat.tous')]
+    #[Route('soignemoi-local/tous', name: 'secretariat.tous', methods: ['GET'])]
     public function donneesTous (Request $request) : Response
     {
         try{
@@ -40,14 +40,13 @@ final class SecretariatController extends AbstractController
             $query = $qb->getQuery();
             $this->donnees = $query->getResult();
             return $this->json($this->donnees);
-            var_dump($this->donnees);
         } catch( Exception $e){ 
             return new JsonResponse(["Erreur" => $e->getMessage()]);
         } 
     }
 
     // Entrées
-    #[Route('soignemoi-local/entrees', name: 'secretariat.entrees')]
+    #[Route('soignemoi-local/entrees', name: 'secretariat.entrees', methods: ['GET'])]
     public function donneesEntrees (Request $request) : Response
     {
         try{
@@ -67,7 +66,7 @@ final class SecretariatController extends AbstractController
     }
    
      // Sorties
-     #[Route('soignemoi-local/sorties', name: 'secretariat.sorties')]
+     #[Route('soignemoi-local/sorties', name: 'secretariat.sorties', methods: ['GET'])]
      public function donneesSorties (Request $request) : Response
     {
         try{
@@ -85,7 +84,7 @@ final class SecretariatController extends AbstractController
     }
     
     //---------------------------------------------------------------------------------------------------
-    #[Route('soignemoi-local/details/{id}', name: 'secretariat.details')]
+    #[Route('soignemoi-local/details/{id}', name: 'secretariat.details', methods: ['GET'])]
     public function details (int $id, Request $request) : Response
     {
         try{

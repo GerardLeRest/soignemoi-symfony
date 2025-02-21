@@ -20,7 +20,7 @@ final class IdMedecinController extends AbstractController
         $this->emi = $emi;
     }
 
-    #[Route('soignemoi-local/idMedecin', name: 'route_idMedecin', methods: ['POST'])]
+    #[Route('soignemoi-local/idMedecin', name: 'medecin.idMedecin', methods: ['POST'])]
     public function acquisitionIdMedecin(Request $request): Response
     {
         // recupération de donnees JSON et transformation en tableau associatif

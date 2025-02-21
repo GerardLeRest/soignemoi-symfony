@@ -7,7 +7,7 @@
         "request": "launch",
         "port": 9003,
         "pathMappings": {
-          "/home/gerard/Documents/Cours/Studi/Bachelor_Developpeur_PHP-Symfony/Projets/soignemoi-symfony/soignemoi-local/soignemoi-locoa-2/": "${workspaceFolder}"
+          "/var/www/html/soignemoi-local/": "${workspaceFolder}"
         },
         "xdebugSettings": {
           "max_children": 512,
@@ -17,4 +17,3 @@
       }
     ]
   }
-  

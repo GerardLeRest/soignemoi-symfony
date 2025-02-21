@@ -21,7 +21,7 @@ private EntityManagerInterface $emi;
         $this->emi = $emi;
     }
 
-    #[Route('soignemoi-local/formulaireAvis', name: 'app_avis', methods: ['POST'])]
+    #[Route('soignemoi-local/formulaireAvis', name: 'medecin.avis', methods: ['POST'])]
     public function verification(Request $request): Response
     {
         // recupération de donnees JSON et transformation en tableau associatif
