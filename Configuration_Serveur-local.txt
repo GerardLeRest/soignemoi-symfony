@@ -5,19 +5,24 @@ https://symfony.com/doc/current/setup/web_server_configuration.html
 
 1 - Configuring PHP-FPM
 fichier /etc/php/8.3/fpm/pool.d/www.conf
-- changer les deux lignes (192.168.1.11: accès extérieur):
-ServerName localhost
-ServerAlias 192.168.1.11
-vérifier la ligne:
-listen = /var/run/php/php8.3-fpm.sock
-changer la ligne
+; /etc/php/8.3/fpm/pool.d/www.conf
 
+; a pool called www
+[www]
+user = www-data
+group = www-data
+
+; use a unix domain socket
+listen = /var/run/php/php8.3-fpm.sock
+
+; or listen on a TCP connection
+; listen = 127.0.0.1:9000
 
 2 - Configuration de Apache
 fichier/etc/apache2/sites-available/soignemoi-local.conf:
-- changer la ligne:
+- changer les lignes:
     ServerName localhost
-'- Effacer ServerAlias ...
+'- ServerAlias 192.168.1.11
 - vérifier:    
     SetHandler proxy:unix:/var/run/php/php8.3-fpm.sock|fcgi://dummy
 - changer project par soignemoi-local et Mone par All
@@ -34,22 +39,26 @@ CustomLog /var/log/apache2/soignemoi-local_access.log combined
 </VirtualHost>
 
 3 - permission et droits
+permissions:
+
 cd /var/www/html/soignemoi-local
 - dossiers:
 find . -type d -exec chmod 755 {} \;
 - fichiers:
 find . -type f -exec chmod 644 {} \;
-- le propiétaire est $user et le groupe www-data:
-sudo chown -R $user:www-data /var/www/html/soignemoi-local
-- var doit être accessible ( 3 lignes de commande)
+-dossier var. var doit être accessible ( 3 lignes de commande)
 ( https://symfony.com/doc/current/setup/file_permissions.html):
 HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1)
 sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
 sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
 
+- le propiétaire est $user et le groupe www-data:
+sudo chown -R $user:www-data /var/www/html/soignemoi-local
+
 4 - Routes
 - avec le serveur web de Symfony (php bin/console server:start):
 'essai'
 - En mode localhost:
-http:///soignemoi-local/essai
+/soignemoi-local/essai
 
+/soignemoi-local/essai
