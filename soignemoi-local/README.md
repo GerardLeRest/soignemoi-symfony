@@ -22,9 +22,5 @@
 3 - Mise en place sur le serveur
 ---------------------------------
 - déplacer le dossier soignemoi-local dans /var/www/html
-- changer les propriétaires:
-    sudo chown -R $USER:www-data /var/www/html/soignemoi-local
-- changer les droits:
-  voir fichier joint; PermissionsDroits.txt
-- lancer le site en executant http://localhost/soignemoi-local dans un navigateur internet.
-  http://localhost/soignemoi-local/formulaireMedecin permet de rentrer les information d'un medecin.
+- à partir du document Configuration_Serveur-local (branche main), configurer le serveur PHP-FPM - Apache2. Source: https://symfony.com/doc/current/setup/web_server_configuration.html
+- http://localhost/soignemoi-local/formulaireMedecin permet de rentrer les information d'un medecin.

@@ -1,0 +1,57 @@
+{% set liensURL = {
+    'Page': '/soignemoi-local/page',
+    'Accueil': '/soignemoi-local',
+    'Services': '/soignemoi-local/services',
+    'Patients': '/soignemoi-local/patients',
+    'Professionnels': '/soignemoi-local/professionnels',
+    'Liste des séjours': '/soignemoi-local/liste-sejours',
+    'Créer un sejour': '/soignemoi-local/formulaire-sejour',
+    'Connexion': '/soignemoi-local/formulaire-connexion',
+    'Saisir un médecin': '/soignemoi-local/formulaire-medecin'
+} %}
+
+{% set titrePrincipaux = {
+    '/soignemoi-local/page': 'Page',
+    '/soignemoi-local': 'Hôpital SoigneMoi',
+    '/soignemoi-local/services': 'Services',
+    '/soignemoi-local/patients': 'Patients',
+    '/soignemoi-local/professionnels': 'Professionnels',
+    '/soignemoi-local/liste-sejours': 'Espace-utilisateur',
+    '/soignemoi-local/formulaire-sejour': 'Créer un séjour',
+    '/soignemoi-local/formulaire-connexion': 'Connexion',
+    '/soignemoi-local/formulaire-medecin': "Médecin"
+} %}
+
+<header class="container">
+    <nav class="navbar sticky-top navbar-expand-lg navbar navbar-light bg-light">
+        <!-- Logo de la barre de navigation -->
+        <a class="navbar-brand" href="/soignemoi-local">
+            <img src="/assets/images/logo_120_120.png" width="60" height="60" alt="Logo">
+        </a>
+        <!-- Menu -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                {% for cle, valeur in liensURL %}
+                    <li class="nav-item px-3">
+                        {# active: page active #}
+                        <a class="nav-link {{ app.request.pathinfo == valeur ? 'active' : '' }}" href="{{ valeur }}">{{ cle }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+    <div class="row justify-content-center align-self-center">
+        <div class="col-8 border-bottom">
+            <!-- Titre principal du site -->
+            {% set lien_url = app.request.pathinfo %}
+            <h2> 
+                {{ titrePrincipaux[lien_url] is defined ? titrePrincipaux[lien_url] : 'Page inconnue' }}
+            </h2>
+        </div>
+    </div>
+</header>
+

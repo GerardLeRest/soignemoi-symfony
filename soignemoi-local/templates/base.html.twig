@@ -2,16 +2,37 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}SoigneMoi{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/personnel.css') }}">
         {% endblock %}
-
         {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+            {# {% block importmap %}{{ importmap('app') }}{% endblock %} #}
         {% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
+
+    <body  class="d-flex flex-column min-vh-100">
+        <main class="container flex-grow-1">
+            {% block content %}
+                {# corps de la page #}
+                {% include 'header.html.twig' %}
+            {% endblock %}
+        </main>        
+        <footer class="mt-auto container">
+            {% block footer %}
+                <div class="row">     
+                    <div class="col text-center">
+                        <p>
+                            Hôpital SoigneMoi, 12 Boulevard Victor Hugo, 59182 Chtibuck - 02 78 45 63 21
+                        </p>
+                    </div>
+                </div>
+                <!-- Fichier Bootstrap JS -->
+                <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+            {% endblock %}
+        </footer>
     </body>
 </html>
+

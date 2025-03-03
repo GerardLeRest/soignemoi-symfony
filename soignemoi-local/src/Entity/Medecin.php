@@ -8,6 +8,7 @@ use App\Repository\MedecinRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MedecinRepository::class)]
 class Medecin
@@ -18,21 +19,28 @@ class Medecin
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    //attaché au formulaire
+    #[Assert\NotBlank(message: "Le prénom est obligatoire.")] 
     private ?string $prenom = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: "Le nom est obligatoire.")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: "Le matricule est obligatoire.")]
+    #[Assert\Length(min: 5, max: 10, minMessage: 
+                "Le matricule doit contenir au moins {{ limit }} caractères.")]
     private ?string $matricule = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100)] 
+    #[Assert\NotBlank(message: "La spécialité est obligatoire.")]
     private ?string $specialite = null;
 
     /**
      * @var Collection<int, Avis>
      */
-    #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'medecin')]  // Modifié ici : la collection est "aviss"
+    #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'medecin')]  
     private Collection $aviss;
 
     /**
