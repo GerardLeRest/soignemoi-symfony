@@ -37,7 +37,6 @@ class MedecinController extends AbstractController
             // Redirige vers une page de succès
             // return $this->redirectToRoute('app_success');
         }
-
         // Affiche le formulaire dans le template
         return $this->render('medecin/index.html.twig', [
             'form' => $form->createView(),

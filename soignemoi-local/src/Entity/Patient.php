@@ -7,9 +7,11 @@ use App\Repository\PatientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: PatientRepository::class)]
-class Patient
+class Patient implements PasswordAuthenticatedUserInterface //interface -> mot de passe Symfony
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,18 +19,67 @@ class Patient
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    //attaché au formulaire
+    #[Assert\NotBlank(message: "Le prénom est obligatoire.")]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: "Le prénom doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le prénom ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 100)]
+    //attaché au formulaire
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: "Le nom doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le nom ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     private ?string $nom = null;
 
     #[ORM\Column(length: 100)]
+    //attaché au formulaire
+    #[Assert\NotBlank(message: "L'adresse est obligatoire.")]
+    #[Assert\Length(
+        min: 10,
+        max: 150,
+        minMessage: "L'adresse postale doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "L'adresse postale ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     private ?string $adressePostale = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "L'email est obligatoire.")]
+    #[Assert\Email(message: "L'email '{{ value }}' n'est pas valide.")]
     private ?string $email = null;
 
     #[ORM\Column(length: 100)]
+    //attaché au formulaire
+    #[Assert\NotBlank(message: "Le mot de passe est obligatoire.")]
+    #[Assert\Length(
+        min: 8,
+        max: 20,
+        minMessage: "Le mot de passe doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le mot de passe ne peut pas contenir plus de {{ limit }} caractères."
+    )]
+    #[Assert\Regex(
+        pattern: "/[A-Z]/",
+        message: "Le mot de passe doit contenir au moins une lettre majuscule."
+    )]
+    #[Assert\Regex(
+        pattern: "/[a-z]/",
+        message: "Le mot de passe doit contenir au moins une lettre minuscule."
+    )]
+    #[Assert\Regex(
+        pattern: "/[0-9]/",
+        message: "Le mot de passe doit contenir au moins un chiffre."
+    )]
+    #[Assert\Regex(
+        pattern: "/[\W_]/",
+        message: "Le mot de passe doit contenir au moins un caractère spécial (ex: !, @, #, $, %)."
+    )]
     private ?string $motDePasse = null;
 
     /**
@@ -120,6 +171,13 @@ class Patient
 
         return $this;
     }
+
+    // Méthode pour Symfony
+    public function getPassword(): ?string
+    {
+        return $this->motDePasse;
+    }
+
 
     /**
      * @return Collection<int, Sejour>

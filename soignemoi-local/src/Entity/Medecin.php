@@ -20,21 +20,42 @@ class Medecin
 
     #[ORM\Column(length: 100)]
     //attaché au formulaire
-    #[Assert\NotBlank(message: "Le prénom est obligatoire.")] 
+    #[Assert\NotBlank(message: "Le prénom est obligatoire.")]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: "Le prénom doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le prénom ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     private ?string $prenom = null;
-
+    
     #[ORM\Column(length: 100)]
+     //attaché au formulaire
     #[Assert\NotBlank(message: "Le nom est obligatoire.")]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: "Le nom doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le nom ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     private ?string $nom = null;
 
     #[ORM\Column(length: 100)]
+    // attaché au formulaire
     #[Assert\NotBlank(message: "Le matricule est obligatoire.")]
-    #[Assert\Length(min: 5, max: 10, minMessage: 
-                "Le matricule doit contenir au moins {{ limit }} caractères.")]
+    #[Assert\Length(min: 5, max: 10, 
+        minMessage: "Le matricule doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le matricule ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     private ?string $matricule = null;
 
-    #[ORM\Column(length: 100)] 
-    #[Assert\NotBlank(message: "La spécialité est obligatoire.")]
+    #[ORM\Column(length: 100)]
+    // attaché au formulaire
+    #[Assert\NotBlank(message: "Le matricule est obligatoire.")]
+    #[Assert\Length(min: 5, max: 10, 
+        minMessage: "La spécialité doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le spécialité ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     private ?string $specialite = null;
 
     /**
