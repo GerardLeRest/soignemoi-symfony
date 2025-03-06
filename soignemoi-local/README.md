@@ -1,4 +1,4 @@
-                     Installation du site we "soignemoi-web"
+                     Installation du site "soignemoi-local"
                      --------------------------------------
 
 1 - Création de la branche locale "soignemoi-local"

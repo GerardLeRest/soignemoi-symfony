@@ -5,7 +5,8 @@
 namespace App\Controller;
 
 use App\Entity\Patient;
-use App\Form\PatientFormType;
+use App\Form\formulaire;
+use App\Form\PatientType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,14 +16,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PatientController extends AbstractController
 {
-    #[Route('soignemoi-local/formulaire-patient', name: 'nouveau_patient')]
+    #[Route('soignemoi-local/formulaire/patient', name: 'app_patient')]
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
     {
         // Crée une nouvelle instance de Patient
         $patient = new Patient();
 
         // Crée le formulaire
-        $form = $this->createForm(PatientFormType::class, $patient);
+        $form = $this->createForm(PatientType::class, $patient);
 
         // Traite la soumission du formulaire
         $form->handleRequest($request);
@@ -39,8 +40,8 @@ class PatientController extends AbstractController
             $entityManager->persist($patient);
             $entityManager->flush();
 
-            // Redirige vers la page d'accueil ou de succès
-            return $this->redirectToRoute('page.accueil');
+            // Redirige vers la page d'accueil
+            return $this->redirectToRoute('app_accueil');
         }
 
         // Affiche le formulaire dans le template

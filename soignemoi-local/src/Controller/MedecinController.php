@@ -12,7 +12,7 @@ use App\Form\MedecinType;
 
 class MedecinController extends AbstractController
 {
-    #[Route('soignemoi-local/formulaire-medecin', name: 'nouveau_medecin')]
+    #[Route('soignemoi-local/formulaire/medecin', name: 'app_formulaire_medecin')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         // Crée une nouvelle instance de Medecin
@@ -20,7 +20,6 @@ class MedecinController extends AbstractController
 
         // Crée le formulaire
         $form = $this->createForm(MedecinType::class, $medecin);
-
         // Traite la soumission du formulaire
         $form->handleRequest($request);
 
@@ -29,14 +28,11 @@ class MedecinController extends AbstractController
             // Enregistre le médecin en base de données
             $entityManager->persist($medecin);
             $entityManager->flush();
-            return $this->redirect('/soignemoi-local');
-        //Réinitialisez le formulaire en créant une nouvelle instance de l'entité et du formulaire
-        $medecin = new Medecin(); // Réinitialisez l'entité
-        $form = $this->createForm(MedecinType::class, $medecin); // Réinitialisez le formulaire
 
-            // Redirige vers une page de succès
-            // return $this->redirectToRoute('app_success');
+            // Redirige vers la page d'accueil
+            return $this->redirectToRoute('app_accueil'); 
         }
+
         // Affiche le formulaire dans le template
         return $this->render('medecin/index.html.twig', [
             'form' => $form->createView(),

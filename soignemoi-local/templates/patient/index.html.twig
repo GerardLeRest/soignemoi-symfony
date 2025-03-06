@@ -3,7 +3,7 @@
 {% block content %}
     {{ parent() }}
     <div class="container">
-        {{ form_start(form) }}
+        {{ form_start(form, {'method': 'POST'}) }}
         <div class="row">
             
             <!-- Colonne de gauche (2 colonnes) -->
@@ -53,4 +53,3 @@
         {{ form_end(form) }}
     </div>
 {% endblock %}
-

@@ -58,15 +58,9 @@ class Medecin
     )]
     private ?string $specialite = null;
 
-    /**
-     * @var Collection<int, Avis>
-     */
     #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'medecin')]  
     private Collection $aviss;
 
-    /**
-     * @var Collection<int, Prescription>
-     */
     #[ORM\OneToMany(targetEntity: Prescription::class, mappedBy: 'medecin')]  // Modifié ici
     private Collection $prescriptions;
 
@@ -129,9 +123,6 @@ class Medecin
         return $this;
     }
 
-    /**
-     * @return Collection<int, Avis>
-     */
     public function getAviss(): Collection  // "getAviss" au lieu de "getAvis"
     {
         return $this->aviss;  // "aviss" est correct ici
@@ -158,9 +149,6 @@ class Medecin
         return $this;
     }
 
-    /**
-     * @return Collection<int, Prescription>
-     */
     public function getPrescriptions(): Collection
     {
         return $this->prescriptions;

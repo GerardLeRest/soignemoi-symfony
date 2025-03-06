@@ -82,15 +82,10 @@ class Patient implements PasswordAuthenticatedUserInterface //interface -> mot d
     )]
     private ?string $motDePasse = null;
 
-    /**
-     * @var Collection<int, Sejour>
-     */
     #[ORM\OneToMany(targetEntity: Sejour::class, mappedBy: 'patient')]  // Modifié ici
     private Collection $sejours;
 
-    /**
-     * @var Collection<int, Avis>
-     */
+    
     #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'patient')]  // Modifié ici
     private Collection $aviss;  // Nom correct ici (pas "avis")
 
@@ -178,10 +173,6 @@ class Patient implements PasswordAuthenticatedUserInterface //interface -> mot d
         return $this->motDePasse;
     }
 
-
-    /**
-     * @return Collection<int, Sejour>
-     */
     public function getSejours(): Collection
     {
         return $this->sejours;
@@ -208,9 +199,6 @@ class Patient implements PasswordAuthenticatedUserInterface //interface -> mot d
         return $this;
     }
 
-    /**
-     * @return Collection<int, Avis>
-     */
     public function getAviss(): Collection  // Modifié ici : "getAvis" devient "getAviss"
     {
         return $this->aviss;  // Correct ici
@@ -237,9 +225,6 @@ class Patient implements PasswordAuthenticatedUserInterface //interface -> mot d
         return $this;
     }
 
-    /**
-     * @return Collection<int, Prescription>
-     */
     public function getPrescriptions(): Collection
     {
         return $this->prescriptions;

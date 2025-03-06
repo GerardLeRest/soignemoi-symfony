@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SejourRepository;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SejourRepository::class)]
@@ -18,19 +19,42 @@ class Sejour
     #[ORM\JoinColumn(nullable: false)]
     private ?Patient $patient = null; 
 
+    #[Assert\NotNull]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateDebut = null;
+    private ?\DateTimeInterface $dateDebut;
 
+    #[Assert\GreaterThan(propertyPath: 'dateDebut', message: "La date de fin doit être après la date de début.")]
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateFin = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    //attaché au formulaire
+    #[Assert\NotBlank(message: "Le motif du séjour est obligatoire.")]
+    #[Assert\Length(
+        min: 2,
+        max: 200,
+        minMessage: "Le motif du séjour doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le motif du séjour ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     private ?string $motifSejour = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: "La spécialité est obligatoire.")]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: "La spécialité doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "La spécialité ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     private ?string $specialite = null;
 
     #[ORM\Column(length: 100, nullable: true)]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: "La spécialité doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "La spécialité ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     private ?string $medecinSouhaite = null;
 
     public function getId(): ?int

@@ -19,7 +19,7 @@ final class PrescriptionController extends AbstractController
         $this->emi = $emi;
     }
 
-    #[Route('soignemoi-local/formulairePrescription', name: 'medecin.prescriptions', methods: ['POST'])]
+    #[Route('soignemoi-local/formulaire/prescription', name: 'app_prescriptions', methods: ['POST'])]
     public function verification(Request $request): Response
     {
         // recupération de donnees JSON et transformation en tableau associatif
