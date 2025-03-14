@@ -14,7 +14,7 @@ use App\Entity\Patient;
 final class SejourController extends AbstractController
 {
     #[Route('soignemoi-local/formulaire/sejour', name: 'app_formulaire_sejour')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $emi): Response
     {
         // Crée une nouvelle instance de Sejour
         $sejour = new Sejour();
@@ -26,14 +26,14 @@ final class SejourController extends AbstractController
         // Vérifie si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
             // Simulation du patient avec ID = 1 (remplacer par un vrai patient si nécessaire)
-            $patient = $entityManager->find(Patient::class, 1);
+            $patient = $emi->find(Patient::class, 1);
             if ($patient) {
                 $sejour->setPatient($patient);
             }
 
             // Enregistrement en base de données
-            $entityManager->persist($sejour);
-            $entityManager->flush();
+            $emi->persist($sejour);
+            $emi->flush();
 
             // Redirige vers la page d'accueil
             return $this->redirectToRoute('app_accueil');

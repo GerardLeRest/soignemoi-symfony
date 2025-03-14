@@ -9,9 +9,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: PatientRepository::class)]
-class Patient implements PasswordAuthenticatedUserInterface //interface -> mot de passe Symfony
+class Patient 
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -50,38 +51,6 @@ class Patient implements PasswordAuthenticatedUserInterface //interface -> mot d
     )]
     private ?string $adressePostale = null;
 
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "L'email est obligatoire.")]
-    #[Assert\Email(message: "L'email '{{ value }}' n'est pas valide.")]
-    private ?string $email = null;
-
-    #[ORM\Column(length: 100)]
-    //attaché au formulaire
-    #[Assert\NotBlank(message: "Le mot de passe est obligatoire.")]
-    #[Assert\Length(
-        min: 8,
-        max: 20,
-        minMessage: "Le mot de passe doit contenir au moins {{ limit }} caractères.",
-        maxMessage: "Le mot de passe ne peut pas contenir plus de {{ limit }} caractères."
-    )]
-    #[Assert\Regex(
-        pattern: "/[A-Z]/",
-        message: "Le mot de passe doit contenir au moins une lettre majuscule."
-    )]
-    #[Assert\Regex(
-        pattern: "/[a-z]/",
-        message: "Le mot de passe doit contenir au moins une lettre minuscule."
-    )]
-    #[Assert\Regex(
-        pattern: "/[0-9]/",
-        message: "Le mot de passe doit contenir au moins un chiffre."
-    )]
-    #[Assert\Regex(
-        pattern: "/[\W_]/",
-        message: "Le mot de passe doit contenir au moins un caractère spécial (ex: !, @, #, $, %)."
-    )]
-    private ?string $motDePasse = null;
-
     #[ORM\OneToMany(targetEntity: Sejour::class, mappedBy: 'patient')]  // Modifié ici
     private Collection $sejours;
 
@@ -95,13 +64,18 @@ class Patient implements PasswordAuthenticatedUserInterface //interface -> mot d
     #[ORM\OneToMany(targetEntity: Prescription::class, mappedBy: 'patient')]  // Modifié ici
     private Collection $prescriptions;
 
+    // Relation OneToOne avec user
+    // Côté propriétaire de la relation OneToOne
+    #[ORM\OneToOne(targetEntity: User::class, inversedBy: 'patient')]
+    #[ORM\JoinColumn(nullable: false)] // Colonne de jointure (user_id)
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->sejours = new ArrayCollection();
-        $this->aviss = new ArrayCollection();  // Correct ici
-        $this->prescriptions = new ArrayCollection();
+        $this->aviss = new ArrayCollection();  
     }
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -143,34 +117,13 @@ class Patient implements PasswordAuthenticatedUserInterface //interface -> mot d
         return $this;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
+    public function getUser(): ?User {
+        return $this->user;
     }
 
-    public function setEmail(string $email): static
-    {
-        $this->email = $email;
-
+    public function setUser(User $user): static {
+        $this->user = $user;
         return $this;
-    }
-
-    public function getMotDePasse(): ?string
-    {
-        return $this->motDePasse;
-    }
-
-    public function setMotDePasse(string $motDePasse): static
-    {
-        $this->motDePasse = $motDePasse;
-
-        return $this;
-    }
-
-    // Méthode pour Symfony
-    public function getPassword(): ?string
-    {
-        return $this->motDePasse;
     }
 
     public function getSejours(): Collection

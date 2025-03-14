@@ -45,7 +45,7 @@ class PatientType extends AbstractType
                     'class' => 'form-control',    
                 ] 
             ])
-            ->add('motDePasse', PasswordType::class, [
+            ->add('password', PasswordType::class, [
                 'label' => 'Entrez votre Mot de Passe',
                 'attr' => ['placeholder' => 'Entrez votre mot de passe',
                     // class bootstap pour les formulaires

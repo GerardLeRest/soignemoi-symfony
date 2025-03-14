@@ -12,7 +12,6 @@ vérifier la ligne:
 listen = /var/run/php/php8.3-fpm.sock
 changer la ligne
 
-
 2 - Configuration de Apache
 fichier/etc/apache2/sites-available/soignemoi-local.conf:
 - changer la ligne:
@@ -48,9 +47,9 @@ sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
 sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var
 
 4 - Routes
+Avec le serveur symfony:
 - avec le serveur web de Symfony (php bin/console server:start):
-'essai'
-- En mode localhost:
+- http://soignemoi-local/essai
+Avec le seveur local:
 /soignemoi-local/essai
-
-/soignemoi-local/essai
+- http://localhost/soignemoi-local
