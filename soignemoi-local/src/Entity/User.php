@@ -25,7 +25,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var list<string> The user roles
      */
-    #[ORM\Column]
+    #[ORM\Column(type: 'json')]
     private array $roles = [];
 
     /**
@@ -61,8 +61,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     // Relation OneToOne avec Patient
     // Côté inverse de la relation OneToOne
     #[ORM\OneToOne(targetEntity: Patient::class, mappedBy: 'user')]
-    private $patient;
-
+    private ?Patient $patient = null;
+    
     public function getId(): ?int
     {
         return $this->id;

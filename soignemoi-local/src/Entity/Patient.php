@@ -8,8 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
+
 
 #[ORM\Entity(repositoryClass: PatientRepository::class)]
 class Patient 
@@ -67,7 +66,7 @@ class Patient
     // Relation OneToOne avec user
     // Côté propriétaire de la relation OneToOne
     #[ORM\OneToOne(targetEntity: User::class, inversedBy: 'patient')]
-    #[ORM\JoinColumn(nullable: false)] // Colonne de jointure (user_id)
+    #[ORM\JoinColumn(name:'user_id', nullable: false)] // Colonne de jointure (user_id)
     private ?User $user = null;
 
     public function __construct()

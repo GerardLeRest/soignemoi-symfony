@@ -30,7 +30,7 @@ class MedecinController extends AbstractController
             $entityManager->flush();
 
             // Redirige vers la page d'accueil
-            return $this->redirectToRoute('app_accueil'); 
+            return $this->redirectToRoute('app_home'); 
         }
 
         // Affiche le formulaire dans le template

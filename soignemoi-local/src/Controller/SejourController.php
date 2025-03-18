@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Sejour;
 use App\Form\SejourType;
 use App\Entity\Patient;
+use App\Entity\User; // Import the User class
 
 final class SejourController extends AbstractController
 {
@@ -25,8 +26,18 @@ final class SejourController extends AbstractController
 
         // Vérifie si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
-            // Simulation du patient avec ID = 1 (remplacer par un vrai patient si nécessaire)
-            $patient = $emi->find(Patient::class, 1);
+            //récupération de l'utilsateur connecté
+             $user = $this->getuser(); 
+             if ($user instanceof User) {
+                // Récupérer l'ID de l'utilisateur connecté
+                $userId = $user->getId();
+            } else {
+                // Utilisateur non connecté, on renvoie une erreur
+                throw $this->createAccessDeniedException('Utilisateur non connecté.');
+            }
+
+            // récupération du patient correspondant au user
+            $patient = $emi->find(Patient::class,$userId); 
             if ($patient) {
                 $sejour->setPatient($patient);
             }
@@ -36,7 +47,7 @@ final class SejourController extends AbstractController
             $emi->flush();
 
             // Redirige vers la page d'accueil
-            return $this->redirectToRoute('app_accueil');
+            return $this->redirectToRoute('app_home');
         }
 
         // Affichage du formulaire dans le template

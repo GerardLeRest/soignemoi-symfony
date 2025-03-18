@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class PagesSimplesController extends AbstractController
 {
-    #[Route('soignemoi-local', name: 'app_accueil', methods: ['GET'])]
+    #[Route('soignemoi-local', name: 'app_home', methods: ['GET'])]
     public function accueil(): Response
     {
         return $this->render('pages_simples/accueil.html.twig');

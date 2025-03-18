@@ -9,36 +9,54 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Patient;
+use App\Entity\User;
 use Exception;
 
 final class ListeSejoursController extends AbstractController
 {
     #[Route('/soignemoi-local/liste/sejours', name: 'app_liste_sejours')]
-    public function donneesEntrees (Request $request, EntityManagerInterface $emi) : Response
+    public function donneesEntrees(Request $request, EntityManagerInterface $emi): Response
     {
-        $id = 1; // On simule uniquement pour le patient 1
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Vérifier si l'utilisateur est bien de type User
+        if ($user instanceof User) {
+            // Récupérer l'ID de l'utilisateur connecté
+            $userId = $user->getId();
+        } else {
+            // Utilisateur non connecté, on renvoie une erreur
+            throw $this->createAccessDeniedException('Utilisateur non connecté.');
+        }
 
         try {
+            // Création de la requête pour récupérer les séjours de l'utilisateur
             $qb = $emi->createQueryBuilder();
             $qb->select('s.dateDebut', 's.dateFin', 's.motifSejour', 's.specialite', 's.medecinSouhaite')
                 ->from(Patient::class, 'p')
                 ->join('p.sejours', 's')
-                ->where('p.id = :idPatient');
-            $qb->setParameter('idPatient', $id);
+                ->where('p.id = :idPatient')
+                ->setParameter('idPatient', $userId);
+
             $query = $qb->getQuery();
-            $donnees = $query->getResult(); //tableau d'objets
-            //transformation en un tableau associatif
+            $donnees = $query->getResult(); // Tableau d'objets
+            
+            // Transformation en un tableau associatif
             $tableauSejours = $this->creationTableau($donnees);
+
+            // Retourner la réponse avec les données
             return $this->render('sejours/index.html.twig', [
-                'tableau' => $tableauSejours
-            ]);  
-        } catch(Exception $e){
-            return new JsonResponse(["Erreur" => $e->getMessage()]);
+                'tableau' => $tableauSejours,
+            ]);
+
+        } catch (Exception $e) {
+            return new JsonResponse(['Erreur' => $e->getMessage()]);
         }
-        
     }
 
-    public function creationTableau(array $tableau): array{
+    // Fonction pour transformer les données en tableau associatif
+    public function creationTableau(array $tableau): array
+    {
         $data = [];
         foreach ($tableau as $element) {
             $data[] = [
@@ -52,3 +70,4 @@ final class ListeSejoursController extends AbstractController
         return $data;
     }
 }
+
