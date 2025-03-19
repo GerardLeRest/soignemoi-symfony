@@ -7,32 +7,32 @@
         <div class="row">
             
             <!-- Colonne de gauche (2 colonnes) -->
-            <div class="col-lg-2">
+            <div class="col-lg-2 col-md-1">
                 <!-- Espace réservé à gauche -->
             </div>
             
             <!-- Colonne centrale avec les champs -->
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-10">
                 <div class="row mb-3">
-                    <div class="mb-3 col-lg-6 col-md-12">
+                    <div class="mb-3 col-lg-6 col-md-6 ">
                         {{ form_label(form.prenom, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(form.prenom, {'attr': {'class': 'form-control border-3'}}) }} <!-- border-3: epaisseur -->
                         {{ form_errors(form.prenom) }}
                     </div>
-                    <div class="mb-3 col-lg-6 col-md-12">
+                    <div class="mb-3 col-lg-6 col-md-6">
                         {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(form.nom, {'attr': {'class': 'form-control  border-3'}}) }}
                         {{ form_errors(form.nom) }}
                     </div>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 col-lg-8 col-md-8 ">
                     {{ form_label(form.matricule, 'Matricule', {'label_attr': {'class': 'form-label'}}) }}
-                    {{ form_widget(form.matricule, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget(form.matricule, {'attr': {'class': 'form-control  border-3'}}) }}
                     {{ form_errors(form.matricule) }}
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 col-lg-8 col-md-8">
                     {{ form_label(form.specialite, 'Spécialité', {'label_attr': {'class': 'form-label'}}) }}
-                    {{ form_widget(form.specialite, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget(form.specialite, {'attr': {'class': 'form-control  border-3'}}) }}
                     {{ form_errors(form.specialite) }}
                 </div>
                 <div class="text-center">
@@ -41,7 +41,7 @@
             </div>
 
             <!-- Colonne de droite (2 colonnes) -->
-            <div class="col-lg-2">
+            <div class="col-lg-2 col-md-1">
                 <!-- Espace réservé à droite -->
             </div>
         </div>

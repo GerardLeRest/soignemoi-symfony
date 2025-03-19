@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Form\userType;
 
-class SecurityController extends AbstractController
+class LoginController extends AbstractController
 {
     #[Route('/soignemoi-local/formulaire/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
@@ -19,13 +19,13 @@ class SecurityController extends AbstractController
     // Récupérer le dernier identifiant saisi par l'utilisateur
     $lastUsername = $authenticationUtils->getLastUsername();
 
-    return $this->render('security/login.html.twig', [
+    return $this->render('login/index.html.twig', [
         'last_username' => $lastUsername,
         'error' => $error,
     ]);
 }
 
-    #[Route('/soignemoi-local/logout', name: 'app_logout')]
+    #[Route('/soignemoi-local/formulaire/logout', name: 'app_logout')]
     public function logout(): void
     {
         // La déconnexion est gérée par Symfony

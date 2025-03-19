@@ -5,16 +5,17 @@ namespace App\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Form\UserFormType;
 
-class UserPatientType extends AbstractType
+class UserPatientFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('patientForm', PatientType::class, [
+            ->add('patientForm', PatientFormType::class, [
                 'label' => false, // Masquer le label du sous-formulaire
             ])
-            ->add('userForm', UserType::class, [
+            ->add('userForm', UserFormType::class, [
                 'label' => false, // Masquer le label du sous-formulaire
             ]);
     }

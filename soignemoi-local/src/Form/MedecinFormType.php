@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class MedecinType extends AbstractType
+class MedecinFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

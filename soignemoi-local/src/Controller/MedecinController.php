@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Medecin;
-use App\Form\MedecinType;
+use App\Form\MedecinFormType;
 
 class MedecinController extends AbstractController
 {
@@ -19,7 +19,7 @@ class MedecinController extends AbstractController
         $medecin = new Medecin();
 
         // Crée le formulaire
-        $form = $this->createForm(MedecinType::class, $medecin);
+        $form = $this->createForm(MedecinFormType::class, $medecin);
         // Traite la soumission du formulaire
         $form->handleRequest($request);
 

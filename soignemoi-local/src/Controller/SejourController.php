@@ -8,9 +8,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Sejour;
-use App\Form\SejourType;
 use App\Entity\Patient;
-use App\Entity\User; // Import the User class
+use App\Entity\User;
+use App\Form\SejourFormType;
 
 final class SejourController extends AbstractController
 {
@@ -21,7 +21,7 @@ final class SejourController extends AbstractController
         $sejour = new Sejour();
 
         // Crée le formulaire
-        $form = $this->createForm(SejourType::class, $sejour);
+        $form = $this->createForm(SejourFormType::class, $sejour);
         $form->handleRequest($request);
 
         // Vérifie si le formulaire est soumis et valide

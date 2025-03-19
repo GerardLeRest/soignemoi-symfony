@@ -5,7 +5,7 @@
 namespace App\Controller;
 
 use App\Entity\Patient; // Ensure the Patient entity exists in the specified namespace
-use App\Form\UserPatientType; // Ensure this matches the actual class name and namespace
+use App\Form\UserPatientFormType; // Corrected to match the class name used in the code
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +27,7 @@ class UserPatientController extends AbstractController
         $patient = new Patient(); // Correct instantiation syntax
 
         // Crée le formulaire
-        $form = $this->createForm(UserPatientType::class);
+        $form = $this->createForm(UserPatientFormType::class); // Ensure UserPatientFormType exists in the App\Form namespace
 
         // Traite la soumission du formulaire
         $form->handleRequest($request);
