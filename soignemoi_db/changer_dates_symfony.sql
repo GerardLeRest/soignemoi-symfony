@@ -17,7 +17,11 @@ BEGIN
     UPDATE sejour
     SET date_debut = CURRENT_DATE
     WHERE id = 7;
-
+	
+	UPDATE sejour
+    SET date_fin = CURRENT_DATE
+    WHERE id = 4;
+	
     UPDATE sejour
     SET date_fin = CURRENT_DATE
     WHERE id = 5;
