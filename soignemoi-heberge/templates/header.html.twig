@@ -1,0 +1,58 @@
+{% set liensURL = {
+    'Accueil': '/',
+    'Services': '/services',
+    'Patients': '/patients',
+    'Professionnels': '/professionnels',
+    'Liste des séjours': '/liste/sejours',
+    'Créer un sejour': '/formulaire/sejour',
+    'Connexion': '/formulaire/login',
+    
+} %}
+
+{% set titrePrincipaux = {
+    '/': 'Hôpital SoigneMoi',
+    '/services': 'Services',
+    '/patients': 'Patients',
+    '/professionnels': 'Professionnels',
+    '/liste/sejours': 'Espace-utilisateur',
+    '/formulaire/sejour': 'Créer un séjour',
+    '/formulaire/login': 'Connexion',
+    '/formulaire/userpatient': 'Patient',
+    '/formulaire/medecin': 'Medecin',
+} %}
+
+<header class="container">
+    <nav class="navbar sticky-top navbar-expand-lg navbar navbar-light bg-light">
+        <!-- Logo de la barre de navigation -->
+        <a class="navbar-brand" href="">
+            <img src="/assets/images/logo_120_120.png" width="60" height="60" alt="Logo">
+        </a>
+        <!-- Menu -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                {% for cle, valeur in liensURL %}
+                    <li class="nav-item px-3">
+                        {# active: page active #}
+                        <a class="nav-link {{ app.request.pathinfo == valeur ? 'active' : '' }}" href="{{ valeur }}">{{ cle }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+    <div class="row justify-content-center align-self-center">
+        <div class="col-8 border-bottom">
+            <!-- Titre principal du site -->
+            {% set lien_url = app.request.pathinfo %}
+            <h2> 
+                {{ titrePrincipaux[lien_url] }}
+            </h2>
+        </div>
+    </div>
+    <br>
+    <br>
+</header>
+
