@@ -50,8 +50,10 @@ class SejourFormType extends AbstractType
             ])
             ->add('medecinSouhaite', TextType::class, [
                 'label' => 'Médecin souhaité',
+                'required' => false, // Permet au champ d'être vide
                 'attr' => [
                     'placeholder' => 'Entrez le médecin souhaité',
+                    'required' => false, // Désactive l'attribut HTML "required"
                     'class' => 'form-control',    
                 ] 
             ]);
