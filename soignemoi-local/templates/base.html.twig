@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
+    <!-- messages d'erreurs flash -->
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}SoigneMoi{% endblock %}</title>

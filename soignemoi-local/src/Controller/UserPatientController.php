@@ -1,83 +1,84 @@
 <?php
 
-// src/Controller/UserController.php
-
 namespace App\Controller;
 
-use App\Entity\Patient; // Ensure the Patient entity exists in the specified namespace
-use App\Form\UserPatientFormType; // Corrected to match the class name used in the code
+use App\Entity\User;
+use App\Entity\Patient;
+use App\Form\UserPatientFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\User;
-// Removed incorrect import for UserPatienType
 
 class UserPatientController extends AbstractController
 {
-    #[Route('soignemoi-local/formulaire/userpatient', name: 'app_User')]
-    public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $emi): Response
-    {
-        // Crée une nouvelle instance de user
+    #[Route('soignemoi-local/formulaire/userpatient', name: 'app_user')]
+    public function register(
+        Request $request,
+        EntityManagerInterface $emi,
+        UserPasswordHasherInterface $passwordHasher
+    ): Response {
+        // Crée une nouvelle instance de User
         $user = new User();
 
         // Crée une nouvelle instance de Patient
-        $patient = new Patient(); // Correct instantiation syntax
+        $patient = new Patient();
 
         // Crée le formulaire
-        $form = $this->createForm(UserPatientFormType::class); // Ensure UserPatientFormType exists in the App\Form namespace
+        $form = $this->createForm(UserPatientFormType::class);
 
         // Traite la soumission du formulaire
         $form->handleRequest($request);
 
         // Vérifie si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
-            // récupérer données du formulaire user
+            // Récupérer les données du formulaire User
             $userData = $form->get('userForm')->getData();
-            // récupérer dans la classe $user l'email
-            $email = $userData->getEmail(); // Nouvel email
-            $existingUser = $emi->getRepository(User::class)->findOneBy(['email' => $email]);
 
-            if ($existingUser && $existingUser->getId() !== $user->getId()) {
-                // L'email existe déjà pour un autre utilisateur
-                throw new \Exception('Cet email est déjà utilisé.');
+            // Vérifier si l'email existe déjà
+            $email = $userData->getEmail();
+            $existingUser = $emi->getRepository(User::class)->findOneBy(['email' => $email]);
+            
+            if ($existingUser) {
+                // L'email existe déjà
+                $this->addFlash('error', 'Cet email est déjà utilisé.');
+                return $this->redirectToRoute('app_user');
             }
+
             // Mettre à jour l'email de l'utilisateur
             $user->setEmail($email);
-            // Récupère le mot de passe en clair du formulaire
+
+            // Hacher le mot de passe
             $password = $userData->getPassword();
             $passwordHache = $passwordHasher->hashPassword($user, $password);
             $user->setPassword($passwordHache);
-            
-            // Enregistre le User en base de données
+
+            // Enregistrer le User en base de données
             $emi->persist($user);
             $emi->flush();
-            
-            // récupérer les champs de Patient
-            $patientData = $form->get('patientForm')->getData();
-            $prenom = $patientData->getPrenom();
-            $nom = $patientData->getNom();
-            $adressePostale =$patientData->getAdressePostale();
 
-            // Associer le User au Patient (problème user_id)
+            // Récupérer les données du formulaire Patient
+            $patientData = $form->get('patientForm')->getData();
+            $patient->setPrenom($patientData->getPrenom());
+            $patient->setNom($patientData->getNom());
+            $patient->setAdressePostale($patientData->getAdressePostale());
+
+            // Associer le User au Patient
             $patient->setUser($user);
-            $patient->setPrenom($prenom);
-            $patient->setNom($nom);
-            $patient->setAdressePostale($adressePostale);
             $user->setRoles(['ROLE_USER']); // Attribuer le rôle ROLE_USER
 
-
+            // Enregistrer le Patient en base de données
             $emi->persist($patient);
             $emi->flush();
 
-
-            // Redirige vers la page d'accueil
+            // Rediriger vers la page d'accueil
+            $this->addFlash('success', 'Inscription réussie !');
             return $this->redirectToRoute('app_home');
         }
 
-        // Affiche le formulaire dans le template
+        // Afficher le formulaire dans le template
         return $this->render('userpatient/index.html.twig', [
             'form' => $form->createView(),
         ]);

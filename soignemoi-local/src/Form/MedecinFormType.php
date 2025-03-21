@@ -17,7 +17,7 @@ class MedecinFormType extends AbstractType
                 'label' => 'Prénom',
                     //attr: éléments personnels
                 'attr' => [
-                    'placeholder' => 'Entrez votre prénom',
+                    'placeholder' => 'Entrez le prénom',
                     // class bootstap pour les formulaires
                     'class' => 'form-control',    
                 ] 
@@ -25,21 +25,21 @@ class MedecinFormType extends AbstractType
             ->add('nom', TextType::class, [
                 'label' => 'Nom',
                 'attr' => [                             
-                    'placeholder' => 'Entrez votre nom',
+                    'placeholder' => 'Entrez le nom',
                     'class' => 'form-control',
                 ]  
             ])
             ->add('matricule', TextType::class, [
                 'label' =>"Matricule",
                 'attr' => [ 
-                    'placeholder' => 'Entrez votre matricule',
+                    'placeholder' => 'Entrez le matricule',
                     'class' => 'form-control',  
                 ]   
             ])
             ->add('specialite', TextType::class, [
                 'label' => 'Spécialité',
                 'attr' => [ 
-                    'placeholder' => 'Entrez votre spécialité',
+                    'placeholder' => 'Entrez la spécialité',
                     'class' => 'form-control', 
                 ]
             ]);
