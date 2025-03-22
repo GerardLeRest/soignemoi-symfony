@@ -14,7 +14,7 @@ use App\Form\SejourFormType;
 
 final class SejourController extends AbstractController
 {
-    #[Route('soignemoi-local/formulaire/sejour', name: 'app_formulaire_sejour')]
+    #[Route('/soignemoi-local/formulaire/sejour', name: 'app_formulaire_sejour')]
     public function new(Request $request, EntityManagerInterface $emi): Response
     {
         // Crée une nouvelle instance de Sejour

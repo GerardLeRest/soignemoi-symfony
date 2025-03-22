@@ -14,7 +14,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserPatientController extends AbstractController
 {
-    #[Route('soignemoi-local/formulaire/userpatient', name: 'app_user')]
+    #[Route('/soignemoi-local/formulaire/userpatient', name: 'app_user')]
     public function register(
         Request $request,
         EntityManagerInterface $emi,

@@ -7,7 +7,7 @@
         "request": "launch",
         "port": 9003,
         "pathMappings": {
-          "/var/www/html/soignemoi-local/": "${workspaceFolder}"
+          "/var/www/html//": "${workspaceFolder}"
         },
         "xdebugSettings": {
           "max_children": 512,
