@@ -46,7 +46,7 @@ final class SecretariatController extends AbstractController
     }
 
     // Entrées
-    #[Route('soignemoi-local/entrees', name: 'app_entrees_secretariat', methods: ['GET'])]
+    #[Route('/entrees', name: 'app_entrees_secretariat', methods: ['GET'])]
     public function donneesEntrees (Request $request) : Response
     {
         try{
@@ -66,7 +66,7 @@ final class SecretariatController extends AbstractController
     }
    
      // Sorties
-     #[Route('soignemoi-local/sorties', name: 'app_sorties_secretariat', methods: ['GET'])]
+     #[Route('/sorties', name: 'app_sorties_secretariat', methods: ['GET'])]
      public function donneesSorties (Request $request) : Response
     {
         try{
@@ -84,7 +84,7 @@ final class SecretariatController extends AbstractController
     }
     
     //---------------------------------------------------------------------------------------------------
-    #[Route('soignemoi-local/details/{id}', name: 'app_détails_secretariat', methods: ['GET'])]
+    #[Route('/details/{id}', name: 'app_détails_secretariat', methods: ['GET'])]
     public function details (int $id, Request $request) : Response
     {
         try{
