@@ -6,12 +6,12 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface ApiService {
-    @POST("idMedecin")
+    @POST("id/medecin")
     Call<ReponseMedecin> recupererIdMedecin(@Body Map<String, String> idMedecin);
 
-    @POST("formulaireAvis")
+    @POST("formulaire/avis")
     Call<Void> sendAvis(@Body Map<String, String> avis); // route: /formulaireAvis
 
-    @POST("formulairePrescription")
+    @POST("formulaire/prescription")
     Call<Void> sendPrescription(@Body Map<String, String> prescription); // route: /formulairePrescription
 }

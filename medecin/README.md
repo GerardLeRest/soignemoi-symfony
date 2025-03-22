@@ -17,29 +17,26 @@ Changer les trois URL de types https par les adresses locales
 
 - créer un fichier app/res/xml/network_security_config.xml (autorisation http)
   
-  ```xml
   <?xml version="1.0" encoding="utf-8"?>
   <network-security-config>
       <domain-config cleartextTrafficPermitted="true">
           <domain includeSubdomains="true">192.68.1.11</domain>
       </domain-config>
   </network-security-config>
-  ```
 
 - dans le fichier app/manifets/AndroidManifest.xml, ajouter:
   
-  ```xml
     <application
    android:networkSecurityConfig="@xml/network_security_config"
-  ```
+   android:usesCleartextTraffic="true"
 
 ### 2.2 En hébergé:
 
-- supprimer le fichier app/res/xml/network-security-config.xml et la ligne citée ci-avant
+- supprimer le fichier app/res/xml/network-security-config.xml et les 2 lignes citées ci-avant
 - Vérifier que les adresses web soient "https://www.soignemoi.net/" dans les fichiers ActiviteAvis.java et ActivitePrescription.java
-- ```java
+
    .baseUrl("https://www.soignemoi.net/")
-  ```
+
 
 ## 3 Installation de Medecin
 
