@@ -1,0 +1,43 @@
+.nav-link {
+    color: #738F84 ; /*texte barre de menu */
+}
+
+ h4 {
+    color: #738F84 ;
+}
+
+h2 {
+    color: #FFC857;
+}
+
+p {
+    color: #343A40;
+}
+    
+.bouton-perso {
+    background-color: #FFC857; /* couleur du fond de bouton */
+    color:black; /* couleur du texte du bouton */
+}
+
+.carousel-control-next, /* contrôles des boutons des carrousels */
+.carousel-control-prev {
+    filter: invert(1);
+}
+
+/* texte des erreurs à gauche */
+#erreur-list {
+    text-align: left;
+}
+
+/* tableau liste des séjours */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
+th {
+    background-color: #f2f2f2; /* Optionnel : ajoute un fond différent pour les en-têtes */
+}
