@@ -46,7 +46,7 @@ final class SecretariatController extends AbstractController
     }
 
     // Entrées
-    #[Route('/entrees', name: 'app_entrees_secretariat', methods: ['GET'])]
+    #[Route('/soignemoi-local/entrees', name: 'app_entrees_secretariat', methods: ['GET'])]
     public function donneesEntrees (Request $request) : Response
     {
         try{
@@ -87,14 +87,15 @@ final class SecretariatController extends AbstractController
     #[Route('/soignemoi-local/details/{id}', name: 'app_détails_secretariat', methods: ['GET'])]
     public function details (int $id, Request $request) : Response
     {
-        try{
+        //try{ 
             //------------------------------------------------------------------------------------------      
             //Sejour
             $qb = $this->emi->createQueryBuilder();
-            $qb->select('p.prenom', 'p.nom', 'p.email', 's.dateDebut', 's.dateFin', 's.motifSejour',
+            $qb->select('p.prenom', 'p.nom', 'u.email', 's.dateDebut', 's.dateFin', 's.motifSejour',
                         's.specialite', 's.medecinSouhaite')
                ->from(Patient::class, 'p') 
                ->join('p.sejours', 's') // s à sejours : collection
+               ->join('p.user','u')
                ->where('p.id = :idPatient');
             $qb->setParameter('idPatient', $id);    
             $query = $qb->getQuery();
@@ -173,8 +174,8 @@ final class SecretariatController extends AbstractController
             $tableauFinal = [$tableauSejours, $tableauMedecins, $tableauAvis, $tableauPrescriptions];
             return $this->json($tableauFinal);  
 
-        } catch(Exception $e){
+        /*} catch(Exception $e){
             return new JsonResponse(["Erreur" => $e->getMessage()]);
-        }
+        }*/
     }
 }
