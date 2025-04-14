@@ -87,7 +87,7 @@ final class SecretariatController extends AbstractController
     #[Route('/soignemoi-local/details/{id}', name: 'app_détails_secretariat', methods: ['GET'])]
     public function details (int $id, Request $request) : Response
     {
-        //try{ 
+        try{
             //------------------------------------------------------------------------------------------      
             //Sejour
             $qb = $this->emi->createQueryBuilder();
@@ -174,8 +174,8 @@ final class SecretariatController extends AbstractController
             $tableauFinal = [$tableauSejours, $tableauMedecins, $tableauAvis, $tableauPrescriptions];
             return $this->json($tableauFinal);  
 
-        /*} catch(Exception $e){
+        } catch(Exception $e){
             return new JsonResponse(["Erreur" => $e->getMessage()]);
-        }*/
+        }
     }
 }

@@ -14,7 +14,6 @@ final class UserController extends AbstractController
         // Récupérer l'utilisateur connecté
         $user = $this->getuser();
         
-
         return $this->render('user/profile.html.twig', [
             'user' => $user,
         ]);
