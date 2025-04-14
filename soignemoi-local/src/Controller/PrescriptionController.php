@@ -40,7 +40,7 @@ final class PrescriptionController extends AbstractController
     }
     public function validation(string $nomMedicament, string $posologie,
                                string $dateDeDebut, string $dateDeFin,
-                               string $idMedecin, string $idPatient){
+                               string $idMedecin, string $idPatient) : Response{
                         
         $prescription = new Prescription;
         // Récupération des entités Patient et Medecin

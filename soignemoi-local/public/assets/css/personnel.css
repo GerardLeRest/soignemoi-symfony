@@ -1,43 +1,135 @@
-.nav-link {
-    color: #738F84 ; /*texte barre de menu */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Réinitialisation de la marge, du padding et définition de la hauteur */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
- h4 {
-    color: #738F84 ;
+/* Fond gris pâle pour la page (sera visible sur les côtés) */
+body {
+    background-color: #CED4DA;
+    font-family: 'Roboto', sans-serif;
 }
 
+/* Conteneur central avec fond jaune pâle */
+.conteneur-jaune {
+    width: 90%;               /* Augmentation de la largeur à 90% */
+    max-width: 1400px;        /* Augmentation de la largeur maximale, si besoin */
+    min-height: 100vh;        /* Pour que le bloc s'étende sur toute la hauteur de la vue */
+    margin: 0 auto;           /* Centre le conteneur horizontalement */
+    background-color: #FFFDE7; /* Jaune pâle pour la zone centrale */
+    box-sizing: border-box;
+    padding: 20px;            /* Espace intérieur pour aérer le contenu */
+}
+
+/* En-tête */
+header {
+    background-color: #FFFDE7;
+}
+
+/* Barre de menu */
+.navbar {
+    background-color: #FFFDE7;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: none !important;
+    border-bottom: 2px solid #CED4DA; /* Optionnel: bordure grise qui reprend la couleur du body */
+}
+
+/* Liens du menu */
+.navbar a {
+    color: #4F7F67;  /* Texte foncé pour un bon contraste */
+    font-size: 18px;
+    text-decoration: none;
+}
+
+/* Lien actif */
+.navbar a.active {
+    font-weight: bold;
+    color: #FFC857 !important;
+}
+
+/* Effet hover */
+.navbar a:hover {
+    color: #FFC857;
+}
+
+/*fond des formullaires jaune */
+.formulaire-jaune{
+    background-color: #FFFDE7 !important;
+    padding: 20px; 
+    border-radius: 4px;
+}
+
+/* largeur du tableau de séjou */
+.narrow-table {
+    width: 75%;      /* Ajuster cette valeur selon le résultat souhaité */
+    margin: auto;    /* Centre le tableau horizontalement */
+}
+
+/* Autres styles (titres, paragraphes, boutons, etc.) */
 h2 {
     color: #FFC857;
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+h4 {
+    color: #4F7F67;
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
 }
 
 p {
     color: #343A40;
-}
-    
+    line-height: 1.6;
+    margin-bottom: 1em;
+    font-size: 18px;
+    line-height: 1.75em; /*inteligne */
+    margin-bottom: 1em; /* Ajustez selon vos besoins */
+} 
+
+
 .bouton-perso {
-    background-color: #FFC857; /* couleur du fond de bouton */
-    color:black; /* couleur du texte du bouton */
+    background-color: #FFC857;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.carousel-control-next, /* contrôles des boutons des carrousels */
+.bouton-perso:hover {
+    background-color: #e6b84d;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-control-next,
 .carousel-control-prev {
     filter: invert(1);
 }
 
-/* texte des erreurs à gauche */
 #erreur-list {
     text-align: left;
 }
 
-/* tableau liste des séjours */
 table {
     border-collapse: collapse;
     width: 100%;
 }
+
 th, td {
     border: 1px solid black;
     padding: 8px;
 }
+
 th {
-    background-color: #f2f2f2; /* Optionnel : ajoute un fond différent pour les en-têtes */
+    background-color: #f2f2f2;
 }
+

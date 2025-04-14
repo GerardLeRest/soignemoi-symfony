@@ -43,7 +43,9 @@ class Medecin
     #[ORM\Column(length: 100)]
     // attaché au formulaire
     #[Assert\NotBlank(message: "Le matricule est obligatoire.")]
-    #[Assert\Length(min: 5, max: 10, 
+    #[Assert\Length(
+        min: 5,
+        max: 10, 
         minMessage: "Le matricule doit contenir au moins {{ limit }} caractères.",
         maxMessage: "Le matricule ne peut pas contenir plus de {{ limit }} caractères."
     )]
@@ -52,7 +54,9 @@ class Medecin
     #[ORM\Column(length: 100)]
     // attaché au formulaire
     #[Assert\NotBlank(message: "Le matricule est obligatoire.")]
-    #[Assert\Length(min: 5, max: 10, 
+    #[Assert\Length(
+        min: 5, 
+        max: 50, 
         minMessage: "La spécialité doit contenir au moins {{ limit }} caractères.",
         maxMessage: "Le spécialité ne peut pas contenir plus de {{ limit }} caractères."
     )]

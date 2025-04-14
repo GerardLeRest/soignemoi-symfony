@@ -2,7 +2,7 @@
 {% block content %}
     {{ parent() }}
     <div class="row" >
-    <div class = "col-12 py-3">  <!-- py: padding sur l'axe y - de 0 à 5 -->
+    <div class = "col-12">  <!-- py: padding sur l'axe y - de 0 à 5 -->
         <h4> Historique de l'hôpital </h4>
     </div>
     <div class =row>
@@ -27,7 +27,7 @@
         <!-- image de l'hôpital -->
         <div class="center col-xs-12 col-sm-12 col-lg-3">
             <figure class="figure">
-                <img src="assets/images/Hopital-500x500.webp" class="figure-img img-fluid rounded" alt="image de l'hôpital">
+                <img src="assets/images/Hopital-500x500.webp" class="img-thumbnail" class="figure-img img-fluid rounded" alt="image de l'hôpital">
                 <figcaption class="figure-caption text-end">Vue de l'hôpital</figcaption>
             </figure>
     </div>
@@ -55,13 +55,13 @@
             <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="10000">
-                        <img src="assets/images/salle_d_operation-500x500.webp" class="d-block w-100" alt="salle d'opération">
+                        <img src="assets/images/salle_d_operation-500x500.webp" class="img-thumbnail" class="d-block w-100" alt="salle d'opération">
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
-                        <img src="assets/images/salle_de_reeducation-500x500.webp" class="d-block w-100" alt="salle de rééducation">
+                        <img src="assets/images/salle_de_reeducation-500x500.webp"class="img-thumbnail" class="d-block w-100" alt="salle de rééducation">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/images/scanner-500x500.webp" class="d-block w-100" alt="scanner">
+                        <img src="assets/images/scanner-500x500.webp" class="img-thumbnail" class="d-block w-100" alt="scanner">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">

@@ -6,7 +6,7 @@
     'Liste des séjours': '/soignemoi-local/liste/sejours',
     'Créer un sejour': '/soignemoi-local/formulaire/sejour',
     'Connexion': '/soignemoi-local/formulaire/login',
-    
+    'Inscription': '/soignemoi-local/formulaire/userpatient'
 } %}
 
 {% set titrePrincipaux = {
@@ -17,10 +17,11 @@
     '/soignemoi-local/liste/sejours': 'Espace-utilisateur',
     '/soignemoi-local/formulaire/sejour': 'Créer un séjour',
     '/soignemoi-local/formulaire/login': 'Connexion',
+    '/soignemoi-local/formulaire/userpatient': 'Patient'
 } %}
 
 <header class="container">
-    <nav class="navbar sticky-top navbar-expand-lg navbar navbar-light bg-light">
+    <nav class="navbar navbar-dark sticky-top navbar-expand-lg">
         <!-- Logo de la barre de navigation -->
         <a class="navbar-brand" href="/soignemoi-local">
             <img src="/assets/images/logo_120_120.png" width="60" height="60" alt="Logo">
@@ -45,6 +46,7 @@
         <div class="col-8 border-bottom">
             <!-- Titre principal du site -->
             {% set lien_url = app.request.pathinfo %}
+            <br>
             <h2> 
                 {{ titrePrincipaux[lien_url] is defined ? titrePrincipaux[lien_url] : 'Medecin' }}
             </h2>
@@ -53,4 +55,3 @@
     <br>
     <br>
 </header>
-

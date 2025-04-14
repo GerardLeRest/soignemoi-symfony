@@ -14,11 +14,11 @@ class Avis
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: Medecin::class, inversedBy: 'avis')]
+    #[ORM\ManyToOne(targetEntity: Medecin::class, inversedBy: 'aviss')]
     #[ORM\JoinColumn(name: 'medecin_id', nullable: false)]
     private ?Medecin $medecin = null;
 
-    #[ORM\ManyToOne(targetEntity: Patient::class, inversedBy: 'avis')]
+    #[ORM\ManyToOne(targetEntity: Patient::class, inversedBy: 'aviss')]
     #[ORM\JoinColumn(name: 'patient_id', nullable: false)]
     private ?Patient $patient = null;
 

@@ -14,11 +14,11 @@ class Prescription
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: Medecin::class, inversedBy: 'prescription')]
+    #[ORM\ManyToOne(targetEntity: Medecin::class, inversedBy: 'prescriptions')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Medecin $medecin = null;
 
-    #[ORM\ManyToOne(targetEntity: Patient::class, inversedBy: 'prescription')]
+    #[ORM\ManyToOne(targetEntity: Patient::class, inversedBy: 'prescriptions')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Patient $patient = null; 
 

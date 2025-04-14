@@ -15,7 +15,7 @@ class Sejour
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: Patient::class, inversedBy: 'sejour')]
+    #[ORM\ManyToOne(targetEntity: Patient::class, inversedBy: 'sejours')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Patient $patient = null; 
 
