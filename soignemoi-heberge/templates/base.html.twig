@@ -1,12 +1,5 @@
 <!DOCTYPE html>
 <html>
-    <!-- messages d'erreurs flash -->
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">
-            {{ message }}
-        </div>
-    {% endfor %}
-
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}SoigneMoi{% endblock %}</title>
@@ -16,29 +9,28 @@
             <link rel="stylesheet" href="{{ asset('assets/css/personnel.css') }}">
         {% endblock %}
         {% block javascripts %}
-            {# {% block importmap %}{{ importmap('app') }}{% endblock %} #}
         {% endblock %}
     </head>
+    <body class="min-vh-100">
+        <div class="conteneur-jaune d-flex flex-column min-vh-100">
+            <main class="flex-grow-1">
+                {% block content %}
+                    {% include 'header.html.twig' %}
+                {% endblock %}
+            </main>
 
-    <body  class="d-flex flex-column min-vh-100">
-        <main class="container flex-grow-1">
-            {% block content %}
-                {# corps de la page #}
-                {% include 'header.html.twig' %}
-            {% endblock %}
-        </main>        
-        <footer class="mt-auto container">
-            {% block footer %}
-                <div class="row">     
-                    <div class="col text-center">
-                        <p>
-                            Hôpital SoigneMoi, 12 Boulevard Victor Hugo, 59182 Chtibuck - 02 78 45 63 21
-                        </p>
+            <footer class="mt-auto container">
+                {% block footer %}
+                    <div class="row">     
+                        <div class="col text-center">
+                            <p>
+                                Hôpital SoigneMoi, 12 Boulevard Victor Hugo, 59182 Chtibuck - 02 78 45 63 21
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <!-- Fichier Bootstrap JS -->
-                <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-            {% endblock %}
-        </footer>
+                    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+                {% endblock %}
+            </footer>
+        </div>
     </body>
 </html>

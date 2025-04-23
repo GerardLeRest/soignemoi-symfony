@@ -91,10 +91,11 @@ final class SecretariatController extends AbstractController
             //------------------------------------------------------------------------------------------      
             //Sejour
             $qb = $this->emi->createQueryBuilder();
-            $qb->select('p.prenom', 'p.nom', 'p.email', 's.dateDebut', 's.dateFin', 's.motifSejour',
+            $qb->select('p.prenom', 'p.nom', 'u.email', 's.dateDebut', 's.dateFin', 's.motifSejour',
                         's.specialite', 's.medecinSouhaite')
                ->from(Patient::class, 'p') 
                ->join('p.sejours', 's') // s à sejours : collection
+               ->join('p.user','u')
                ->where('p.id = :idPatient');
             $qb->setParameter('idPatient', $id);    
             $query = $qb->getQuery();

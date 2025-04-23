@@ -4,15 +4,8 @@
     {{ parent() }}
     <div class="container">
         {{ form_start(form, {'method': 'POST'}) }}
-        <div class="row">
-            
-            <!-- Colonne de gauche (1 ou 2 colonnes) -->
-            <div class="col-lg-2 col-md-2">
-                <!-- Espace réservé à gauche -->
-            </div>
-            
-            <!-- Colonne centrale avec les champs -->
-            <div class="col-lg-8 col-md-8">
+        <div class="row"justify-content-center>
+            <div class="col-lg-8 col-md-8 formulaire jaune ">
                 <div class="row  mb-3">
                     <div class="mb-3 col-lg-6 col-md-12">
                         {{ form_label(form.patientForm.prenom, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
@@ -43,11 +36,6 @@
                 <div class="text-center">
                     <button type="submit" class="btn bouton-perso">Valider</button>
                 </div>
-            </div>
-
-            <!-- Colonne de droite (2 colonnes) -->
-            <div class="col-lg-2 col-md-1">
-                <!-- Espace réservé à droite -->
             </div>
         </div>
         {{ form_end(form) }}

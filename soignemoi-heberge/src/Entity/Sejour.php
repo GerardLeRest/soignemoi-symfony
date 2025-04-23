@@ -15,7 +15,7 @@ class Sejour
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: Patient::class, inversedBy: 'sejour')]
+    #[ORM\ManyToOne(targetEntity: Patient::class, inversedBy: 'sejours')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Patient $patient = null; 
 
@@ -50,9 +50,8 @@ class Sejour
 
     #[ORM\Column(length: 100, nullable: true)]
     #[Assert\Length(
-        min: 2,
+        min: 0,
         max: 50,
-        minMessage: "La spécialité doit contenir au moins {{ limit }} caractères.",
         maxMessage: "La spécialité ne peut pas contenir plus de {{ limit }} caractères."
     )]
     private ?string $medecinSouhaite = null;

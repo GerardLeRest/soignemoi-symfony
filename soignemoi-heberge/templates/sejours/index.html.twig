@@ -2,26 +2,28 @@
 {% block content %}
     {{ parent() }}
     
-    <table>
-        <thead>
-            <tr>
-                <th>Date de DébutNom</th>
-                <th>Date de Fin</th>
-                <th>Motif du séjour</th>
-                <th>Spécialité</th>
-                <th>Médecin souhaité</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for sejour in tableau %}
-             <tr>
-                <td>{{ sejour.dateDebut|date('d/m/Y') }}</td>
-                <td>{{ sejour.dateFin ? sejour.dateFin|date('d/m/Y') : 'Non spécifiée' }}</td>
-                <td>{{ sejour.motifSejour }}</td>
-                <td>{{ sejour.specialite }}</td>
-                <td>{{ sejour.medecinSouhaite }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <!-- tableau -->
+        <table class="narrow-table">
+            <thead>
+                <tr>
+                    <th>Date de DébutNom</th>
+                    <th>Date de Fin</th>
+                    <th>Motif du séjour</th>
+                    <th>Spécialité</th>
+                    <th>Médecin souhaité</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sejour in tableau %}
+                <tr>
+                    <td>{{ sejour.dateDebut|date('d/m/Y') }}</td>
+                    <td>{{ sejour.dateFin ? sejour.dateFin|date('d/m/Y') : 'Non spécifiée' }}</td>
+                    <td>{{ sejour.motifSejour }}</td>
+                    <td>{{ sejour.specialite }}</td>
+                    <td>{{ sejour.medecinSouhaite }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
 {% endblock %}

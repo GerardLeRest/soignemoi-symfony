@@ -6,7 +6,7 @@
     'Liste des séjours': '/liste/sejours',
     'Créer un sejour': '/formulaire/sejour',
     'Connexion': '/formulaire/login',
-    
+    'Inscription': '/formulaire/userpatient'
 } %}
 
 {% set titrePrincipaux = {
@@ -17,16 +17,17 @@
     '/liste/sejours': 'Espace-utilisateur',
     '/formulaire/sejour': 'Créer un séjour',
     '/formulaire/login': 'Connexion',
-    '/formulaire/userpatient': 'Patient',
-    '/formulaire/medecin': 'Medecin',
+    '/formulaire/userpatient': 'Patient'
 } %}
 
+
 <header class="container">
-    <nav class="navbar sticky-top navbar-expand-lg navbar navbar-light bg-light">
-        <!-- Menu -->
+    <nav class="navbar navbar-dark sticky-top navbar-expand-lg">
+        <!-- Logo de la barre de navigation -->
         <a class="navbar-brand" href="/">
-            <img src="{{ asset('assets/images/logo_120_120.png') }}" width="60" height="60" alt="Logo">
+            <img src="/assets/images/logo_120_120.png" width="60" height="60" alt="Logo">
         </a>
+        <!-- Menu -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -46,8 +47,9 @@
         <div class="col-8 border-bottom">
             <!-- Titre principal du site -->
             {% set lien_url = app.request.pathinfo %}
+            <br>
             <h2> 
-                {{ titrePrincipaux[lien_url] }}
+                {{ titrePrincipaux[lien_url] is defined ? titrePrincipaux[lien_url] : 'Medecin' }}
             </h2>
         </div>
     </div>

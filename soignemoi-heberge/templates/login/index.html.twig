@@ -16,13 +16,9 @@
             </div>
         {% endif %}
 
-        <div class="row">
-            <!-- Colonne de droite (1 ou 3 colonnes) -->
-            <div class="col-lg-3 col-md-1">
-                <!-- Espace réservé à droite -->
-            </div>
-
-            <form action="{{ path('app_login') }}" method="post" class="card p-4 col-lg-6 col-md-10 shadow-sm">
+        <div class="row justify-content-center">
+                    
+            <form action="{{ path('app_login') }}" method="post" class="card p-4 col-lg-6 col-md-10 formulaire-jaune shadow-sm">
                 <div class="mb-3">
                     <label for="username" class="form-label">Email :</label>
                     <input type="text" id="username" name="_username" class="form-control border-3" value="{{ last_username }}" required autofocus>
@@ -46,11 +42,5 @@
                     {% endif %}
                 </div>
             </form>
-
-            <!-- Colonne de droite (1 ou 3 colonnes) -->
-            <div class="col-lg-3 col-md-1">
-                <!-- Espace réservé à droite -->
-            </div>
         </div>
-    </div>
 {% endblock %}
