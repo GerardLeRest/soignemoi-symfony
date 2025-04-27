@@ -3,13 +3,14 @@ import tkinter as tk
 from tkinter import ttk ## bibliothèque de widgets plus modernes tk
 from datetime import datetime
 import Frame_canevas
-from Tableau import Tableau # importer la classe Tableau du fichiet Tableau.py
+from Acquisition import Acquisition
+from Affichage_identite import Affichage_identite # importer la classe Tableau du fichiet Tableau.py
 
 class Secretariat (tk.Tk):
 
     def __init__(self):
         """Construction de la fenêtre principale"""
-        tk.Tk.__init__(self)   # constructeur de la classe parente
+        super().__init__()   # constructeur de la classe parente
         # Frame des boutons en haut - position 0,0 - éléments au centre
         self.frame_boutons = ttk.Frame(self)
         self.frame_boutons.grid(row=0, column=0)
@@ -24,30 +25,37 @@ class Secretariat (tk.Tk):
         self.label_date = ttk.Label(self.frame_boutons)
         self.label_date.pack(padx=10,pady=8)
         self.afficher_heure_courante()
-        # Framee du canvas partie intérieure de l'application
+        # Frame du canvas partie intérieure de l'application
         self.frame_canvas = Frame_canevas.Frame_canevas(self)
         self.frame_canvas.grid(row=1,column=0)
        
-    def tous(self):
-        self.tableau = Tableau(self, "Tous")
-        self.tableau.recuperation_donnees('http://127.0.0.1:8000/tous')
-        self.affichage()
+    def tous(self)->None:
+        """affichage de tous les patients"""
+        acquisition = Acquisition()
+        donnees = acquisition.recuperation_donnees_bouton('https://soignemoi.net/tous')
+        self.affichage("tous", donnees)
         
-    def sorties(self):
-        self.tableau = Tableau(self, "Sorties")
-        self.tableau.recuperation_donnees('http://127.0.0.1:8000/sorties')
-        self.affichage()
+    def sorties(self)->None:
+        """affichage de tous les patients sortants"""
+        acquisition = Acquisition()
+        donnees = acquisition.recuperation_donnees_bouton('https://soignemoi.net/sorties')
+        self.affichage("sorties", donnees)
         
-    def entrees(self):
-        self.tableau = Tableau(self, "Entrées")
-        self.tableau.recuperation_donnees('http://127.0.0.1:8000/entrees')
-        self.affichage()
+    def entrees(self)->None:
+        """affichage de tous les patients entrants"""
+        acquisition = Acquisition()
+        donnees = acquisition.recuperation_donnees_bouton('https://soignemoi.net/entrees')
+        self.affichage("entrees", donnees)
         
-    def affichage(self):
-        self.tableau.affichage_tableau()
-        self.tableau.habillage_tableau()
+    def affichage(self, titre_fenetre, patients)->None:
+        """affichage dans un tableau"""
+        affichage_identite = Affichage_identite(self, titre_fenetre, patients)
+        affichage_identite.preparation_tableau()
+        affichage_identite.affichage_donnees_tabeau()
+        affichage_identite.habillage_tableau()
         
-    def afficher_heure_courante(self):
+    def afficher_heure_courante(self)->None:
+        """affichage de l'heure courante"""
         # obtenir la date du jour
         today = datetime.now()
         # définir la date du jour
