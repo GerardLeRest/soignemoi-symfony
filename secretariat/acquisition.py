@@ -38,5 +38,4 @@ class Acquisition:
                     print(f"Erreur lors de la récupération des données: {reponse.status_code}")
             except Exception as e: 
                 print(f"Une erreur s'est produite lors de la récupération des données : {e}")
-            return None
-        
+            return None  
