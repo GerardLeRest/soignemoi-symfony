@@ -9,10 +9,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Medecin;
 use App\Form\MedecinFormType;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class MedecinController extends AbstractController
 {
     #[Route('soignemoi-local/formulaire/medecin', name: 'app_formulaire_medecin')]
+    #[IsGranted('ROLE_ADMIN')] 
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         // Crée une nouvelle instance de Medecin
