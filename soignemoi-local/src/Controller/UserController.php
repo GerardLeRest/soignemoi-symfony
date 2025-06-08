@@ -8,13 +8,13 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class UserController extends AbstractController
 {
-    #[Route("/soignemoi-local/profile", name:"app_profile", methods:['GET'])]
+    #[Route("/profile", name:"app_profile", methods:['GET'])]
     public function profile()
     {
         // Récupérer l'utilisateur connecté
         $user = $this->getuser();
         
-        return $this->render('user/profile.html.twig', [
+        return $this->render('user/index.html.twig', [
             'user' => $user,
         ]);
     }

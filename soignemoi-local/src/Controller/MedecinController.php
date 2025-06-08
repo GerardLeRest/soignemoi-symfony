@@ -13,7 +13,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class MedecinController extends AbstractController
 {
-    #[Route('soignemoi-local/formulaire/medecin', name: 'app_formulaire_medecin')]
+    #[Route('/formulaire/medecin', name: 'app_formulaire_medecin')]
     #[IsGranted('ROLE_ADMIN')] 
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {

@@ -8,25 +8,19 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class PagesSimplesController extends AbstractController
 {
-    #[Route('/soignemoi-local', name: 'accueil', methods: ['GET'])]
-    public function bienvenue(): Response
-    {
-        return $this->render('pages_simples/accueil.html.twig');
-    }
-
-    #[Route('/soignemoi-local/services', name: 'app_services', methods: ['GET'])]
+    #[Route('/services', name: 'app_services', methods: ['GET'])]
     public function services(): Response
     {
         return $this->render('pages_simples/services.html.twig');
     }
 
-    #[Route('/soignemoi-local/patients', name: 'app_patients', methods: ['GET'])]
+    #[Route('/patients', name: 'app_patients', methods: ['GET'])]
     public function patients(): Response
     {
         return $this->render('pages_simples/patients.html.twig');
     }
 
-    #[Route('/soignemoi-local/professionnels', name: 'app_professionnels', methods: ['GET'])]
+    #[Route('/professionnels', name: 'app_professionnels', methods: ['GET'])]
     public function professionnels(): Response
     {
         return $this->render('pages_simples/professionnels.html.twig');

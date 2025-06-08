@@ -1,29 +1,34 @@
 {% extends 'base.html.twig' %}
-{% block content %}
-    {{ parent() }}
-    
-    <!-- tableau -->
-        <table class="narrow-table">
+
+{% block title %}Liste des séjours{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-4">Vos séjours</h1>
+    <div class="container mt-5 mb-5 pb-5 ">
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Date de DébutNom</th>
-                    <th>Date de Fin</th>
-                    <th>Motif du séjour</th>
+                    <th>Date début</th>
+                    <th>Date fin</th>
+                    <th>Motif</th>
                     <th>Spécialité</th>
                     <th>Médecin souhaité</th>
                 </tr>
             </thead>
             <tbody>
                 {% for sejour in tableau %}
-                <tr>
-                    <td>{{ sejour.dateDebut|date('d/m/Y') }}</td>
-                    <td>{{ sejour.dateFin ? sejour.dateFin|date('d/m/Y') : 'Non spécifiée' }}</td>
-                    <td>{{ sejour.motifSejour }}</td>
-                    <td>{{ sejour.specialite }}</td>
-                    <td>{{ sejour.medecinSouhaite }}</td>
-                </tr>
+                    <tr>
+                        <td>{{ sejour.dateDebut }}</td>
+                        <td>{{ sejour.dateFin }}</td>
+                        <td>{{ sejour.motifSejour }}</td>
+                        <td>{{ sejour.specialite }}</td>
+                        <td>{{ sejour.medecinSouhaite }}</td>
+                    </tr>
+                {% else %}
+                    <tr><td colspan="5">Aucun séjour trouvé.</td></tr>
                 {% endfor %}
             </tbody>
         </table>
-    
+    </div>
 {% endblock %}
+

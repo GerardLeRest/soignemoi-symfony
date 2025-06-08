@@ -11,10 +11,12 @@ use App\Entity\Sejour;
 use App\Entity\Patient;
 use App\Entity\User;
 use App\Form\SejourFormType;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class SejourController extends AbstractController
 {
-    #[Route('/soignemoi-local/formulaire/sejour', name: 'app_formulaire_sejour')]
+    #[Route('/sejour', name: 'app_formulaire_sejour')]
+    #[IsGranted('ROLE_USER')]
     public function new(Request $request, EntityManagerInterface $emi): Response
     {
         // Crée une nouvelle instance de Sejour

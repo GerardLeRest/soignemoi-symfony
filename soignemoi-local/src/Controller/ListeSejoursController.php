@@ -11,10 +11,13 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Patient;
 use App\Entity\User;
 use Exception;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class ListeSejoursController extends AbstractController
 {
-    #[Route('/soignemoi-local/liste/sejours', name: 'app_liste_sejours')]
+    #[Route('/liste/sejours', name: 'app_liste_sejours')]
+    #[IsGranted('ROLE_USER')]
+
     public function donneesEntrees(Request $request, EntityManagerInterface $emi): Response
     {
         // Récupérer l'utilisateur connecté

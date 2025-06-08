@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue à Soignemoi{% endblock %}
+
+{% block body %}
+
+<section id="hero" class="hero section light-background">
+
+  <img src="{{ asset('assets/img/hero-bg.jpg') }}" alt="Photo d'accueil" data-aos="fade-in">
+
+  <div class="container position-relative">
+
+    <div class="welcome position-relative text-center" data-aos="fade-down" data-aos-delay="100">
+      <h2>Bienvenue à SoigneMoi</h2>
+      <p>Un hôpital moderne au service de votre santé, votre bien-être et votre tranquillité d’esprit.</p>
+    </div>
+
+    <div class="content row gy-4 mt-5">
+
+      <div class="col-lg-4 d-flex align-items-stretch">
+        <div class="why-box p-4 shadow" data-aos="zoom-out" data-aos-delay="200">
+          <h3>Pourquoi choisir SoigneMoi ?</h3>
+          <p>
+            Établissement reconnu, SoigneMoi associe technologies de pointe, expertise médicale et accueil humain. 
+            Nos équipes sont disponibles 24h/24 pour répondre à vos besoins.
+          </p>
+          <div class="text-center mt-3">
+            <a href="{{ path('app_user') }}" class="more-btn">
+            <span>S'inscrire</span>
+            <i class="bi bi-chevron-right"></i>
+</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8 d-flex align-items-stretch">
+        <div class="d-flex flex-column justify-content-center">
+          <div class="row gy-4">
+
+            <div class="col-xl-4 d-flex align-items-stretch">
+              <div class="icon-box p-3 shadow" data-aos="zoom-out" data-aos-delay="300">
+                <i class="bi bi-heart-pulse"></i>
+                <h4>Soins personnalisés</h4>
+                <p>Un parcours de soins adapté à chaque patient, avec un suivi sur mesure assuré par nos médecins.</p>
+              </div>
+            </div>
+
+            <div class="col-xl-4 d-flex align-items-stretch">
+              <div class="icon-box p-3 shadow" data-aos="zoom-out" data-aos-delay="400">
+                <i class="bi bi-hospital"></i>
+                <h4>Technologies avancées</h4>
+                <p>Imagerie, chirurgie mini-invasive, télémédecine : SoigneMoi est à la pointe de l’innovation.</p>
+              </div>
+            </div>
+
+            <div class="col-xl-4 d-flex align-items-stretch">
+              <div class="icon-box p-3 shadow" data-aos="zoom-out" data-aos-delay="500">
+                <i class="bi bi-people"></i>
+                <h4>Équipe bienveillante</h4>
+                <p>Du personnel attentif, des infirmières disponibles, et des services pensés pour faciliter votre séjour.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div><!-- End content -->
+
+  </div>
+</section>
+
+{% endblock %}
+
