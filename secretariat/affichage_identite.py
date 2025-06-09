@@ -12,7 +12,6 @@ class AffichageIdentite(QDialog):
         self.setWindowTitle(titre_fenetre)
         self.setFixedSize(700, 300)
         
-
         self.liste_patients = patients
         self.id_selectionne = None
 
@@ -86,15 +85,26 @@ class AffichageIdentite(QDialog):
         if not selected_items or len(selected_items) < 3:
             return
 
-        id = selected_items[0].text()
         prenom = selected_items[1].text()
         nom = selected_items[2].text()
         identite = f"{prenom} {nom}"
+        # selected_items[0] peut ramené de mauvaises valeurs
+        try:
+            id = int(selected_items[0].text().strip())
+            print("ID sélectionné :", id)
+        except (ValueError, AttributeError) as e:
+            print("ID invalide ou cellule vide :", e)
+            return
+        
 
-        acquisition = Acquisition()
-        donnees = acquisition.recuperation_donnees_clic(id)
+        print("ID sélectionné :", id)
+        id_text = selected_items[0].text().strip()
+        id = int(id_text)
+        prenom = selected_items[1].text()
+        nom = selected_items[2].text()
+        identite = f"{prenom} {nom}"
+        print("ID sélectionné :", id)
 
         details = AffichageDetails(identite, id) #None : séparer la fenêtre d'application et cette fenêtre détails
         details.setWindowFlag(Qt.Window)  # Pour une vraie fenêtre indépendante
-        details.affichage_donnees(donnees)
         details.exec()  # Affichage non-bloquant

@@ -1,6 +1,4 @@
 import sys
-from struct import pack
-from tkinter import ttk ## bibliothèque de widgets plus modernes tk
 from datetime import datetime
 from contenu_frame import ContenuFrame
 from PySide6.QtWidgets import QLabel, QApplication, QWidget, QHBoxLayout, QVBoxLayout, QPushButton
@@ -22,16 +20,17 @@ class Secretariat (QWidget):
         bouton_entrees.setFixedWidth(90)
         bouton_sorties = QPushButton("sorties", self)
         bouton_sorties.setFixedWidth(90)
-       
-         # date
-        self.label_date = QLabel()
-        self.afficher_heure_courante()# methode plus bas
         
-        # connexions
+         # connexions
         bouton_tous.clicked.connect(self.tous)
         bouton_entrees.clicked.connect(self.entrees)
         bouton_sorties.clicked.connect(self.sorties)
         
+         # date
+        self.label_date = QLabel()
+        self.afficher_heure_courante()# methode plus bas
+        
+       
         layout_vertical = QVBoxLayout()
         #bouton_sorties.setFixedWidth(120) # espace entre les boutons
         layout_boutons = QHBoxLayout()
@@ -40,7 +39,7 @@ class Secretariat (QWidget):
         layout_boutons.addWidget(bouton_sorties)   
         layout_boutons.addStretch()  # pousse la date à droite
         layout_boutons.addWidget(self.label_date)
-              
+        # Set stylesheet for QPushButton
 
         # placement du layout_boutons dans le layout général
         layout_vertical.addLayout(layout_boutons) 
@@ -53,25 +52,25 @@ class Secretariat (QWidget):
         self.show()
        
     def tous(self)->None:
-        """affichage de tous les patients"""
+        """affichage des donnéesde tous les patients"""
         acquisition = Acquisition()
-        donnees = acquisition.recuperation_donnees_bouton('https://soignemoi.net/tous')
-        self.affichage("tous", donnees)
+        donnees = acquisition.recuperation_donnees_bouton('http://localhost:8000/tous')
+        self.affichage_donnees("tous", donnees)
         
     def sorties(self)->None:
-        """affichage de tous les patients sortants"""
+        """affichage_des donnees de tous les patients sortants"""
         acquisition = Acquisition()
-        donnees = acquisition.recuperation_donnees_bouton('https://soignemoi.net/sorties')
-        self.affichage("sorties", donnees)
+        donnees = acquisition.recuperation_donnees_bouton('http://localhost:8000/sorties')
+        self.affichage_donnees("sorties", donnees)
         
     def entrees(self)->None:
-        """affichage de tous les patients entrants"""
+        """affichage_des donnees de tous les patients entrants"""
         acquisition = Acquisition()
-        donnees = acquisition.recuperation_donnees_bouton('https://soignemoi.net/entrees')
-        self.affichage("entrees", donnees)
+        donnees = acquisition.recuperation_donnees_bouton('http://localhost:8000/entrees')
+        self.affichage_donnees("entrees", donnees)
         
-    def affichage(self, titre_fenetre, patients)->None:
-        """affichage dans un tableau"""
+    def affichage_donnees(self, titre_fenetre, patients)->None:
+        """affichage_donnees dans un tableau"""
         affichage_identite = AffichageIdentite (titre_fenetre, patients, parent=None)
         affichage_identite.preparation_tableau()
         affichage_identite.affichage_donnees_tableau()
@@ -89,6 +88,34 @@ class Secretariat (QWidget):
     # ----------------------------------------------------
         
 if __name__ == '__main__':
-   app = QApplication(sys.argv)
-   secretariat = Secretariat ()
-   app.exec()
+    app = QApplication(sys.argv)
+
+    # Feuille de style globale
+    app.setStyleSheet("""
+    QPushButton {
+        background-color: #e0e0e0;
+        border: 1px solid #b0b0b0;
+        border-radius: 5px;
+        padding: 6px 12px;
+        font-weight: normal;
+    }
+    QPushButton:hover {
+        background-color: #d0d0d0;
+    }
+
+    QHeaderView::section {
+        background-color: #34495e;
+        color: white;
+        font-weight: normal;
+        padding: 4px;
+    }
+
+    QTableWidget {
+        gridline-color: #dcdcdc;
+        selection-background-color: #f39c12;
+    }
+    """)
+    
+    secretariat = Secretariat ()
+    secretariat.show()
+    app.exec()

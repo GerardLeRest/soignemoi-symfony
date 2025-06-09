@@ -26,17 +26,20 @@ class AffichageDetails(QDialog):
         self.recuperation_donnees()
 
     def recuperation_donnees(self):
-        url_complete = f"http://127.0.0.1:8000/details/{self.id}"
+        """récupérer les données"""
+        url = f"http://localhost:8000/details/{self.id}"
+        print("URL utilisée :", repr(url))
         try:
-            response = requests.get(url_complete)
+            response = requests.get(url)
             if response.status_code == 200:
                 self.liste_donnees = response.json()
-                self.affichage_donnees()
+                self.affichage_donnees(self.liste_donnees)
             else:
                 self.zone_de_texte.setText(f"Erreur : {response.status_code}")
+                self.liste_donnees = None
         except Exception as e:
             self.zone_de_texte.setText(f"Erreur de connexion : {e}")
-
+            self.liste_donnees = None
 
     def affichage_donnees(self, liste_donnees):
         self.liste_donnees = liste_donnees

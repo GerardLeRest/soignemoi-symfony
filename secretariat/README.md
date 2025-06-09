@@ -6,21 +6,20 @@
 
 ## 2 - Préparation de la base de données
 
-- Modifier des dates de sortie et de rentrée en les mettant à la date du jour dans la base de données
+- Modifier des dates de sortie et de rentrée en les mettant à la date du jour dans la base de données avec la rourinz ChangerDtes
 
 ## 3 - Installation des dépendances
 
-pip install virtualenv (si non installé)
-python -m venv env
-source env/bin/activate
-
+    pip install virtualenv (si non installé)
+    python -m venv env
+    source env/bin/activate
 
 ## 4 - Configuration des adresses:
 
 - Pour un fonctionnement sur un serveur local local: 
-  Vérifier les adresses qui doivent commencer par "http:/localhost/soignemoi-web/.... (5 adresses en tout)
+  Vérifier les adresses qui doivent commencer par "http:/localhost/.... 
 - Pour un fonctionnement en mode hébergé:
-  Vérifier les adresses qui doivent commencer par "https://www.soignemoi.net/.... (5 adresses en tout)    
+  Vérifier les adresses qui doivent commencer par "'http://localhost/.... (5 adresses en tout)    
 
 ## 5 - lancement de l'application
 
