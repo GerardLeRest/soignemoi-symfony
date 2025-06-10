@@ -21,19 +21,19 @@
                 </div>
             </div>
 
-            <div class="mb-3 col-lg-8">
+            <div class="mb-3 col-lg-8 mx-auto">
                 {{ form_label(form.patientForm.adressePostale, 'Adresse Postale', {'label_attr': {'class': 'form-label'}}) }}
                 {{ form_widget(form.patientForm.adressePostale, {'attr': {'class': 'form-control border-3'}}) }}
                 {{ form_errors(form.patientForm.adressePostale) }}
             </div>
 
-            <div class="mb-3 col-lg-8">
+            <div class="mb-3 col-lg-8 mx-auto">
                 {{ form_label(form.userForm.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
                 {{ form_widget(form.userForm.email, {'attr': {'class': 'form-control border-3'}}) }}
                 {{ form_errors(form.userForm.email) }}
             </div>
 
-            <div class="mb-3 col-lg-8">
+            <div class="mb-3 col-lg-8 mx-auto">
                 {{ form_label(form.userForm.password, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
                 {{ form_widget(form.userForm.password, {'attr': {'class': 'form-control border-3'}}) }}
                 {{ form_errors(form.userForm.password) }}

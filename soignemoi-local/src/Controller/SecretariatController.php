@@ -84,7 +84,7 @@ final class SecretariatController extends AbstractController
     }
     
     //---------------------------------------------------------------------------------------------------
-    #[Route('/soignemoi-local/details/{id}', name: 'app_détails_secretariat', methods: ['GET'])]
+    #[Route('/details/{id}', name: 'app_détails_secretariat', methods: ['GET'])]
     public function details (int $id, Request $request) : Response
     {
         try{
