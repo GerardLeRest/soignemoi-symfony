@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:textStyle="bold"
             android:layout_marginBottom="20dp"
-            android:textColor="@color/jaune"/>
+            android:textColor="@color/vert"/>
 
         <!-- Champ pour le libellé de l'avis -->
         <EditText

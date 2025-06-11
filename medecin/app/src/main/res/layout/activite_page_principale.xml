@@ -17,7 +17,7 @@
         android:textSize="32sp"
         android:textStyle="bold"
         android:layout_marginBottom="20dp"
-        android:textColor="#FFC857"/>
+        android:textColor="@color/vert"/>
 
     <!-- Image Médecins -->
     <ImageView
@@ -44,7 +44,7 @@
         android:id="@+id/boutonPrecedent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/jaune"
+        android:backgroundTint="@color/bleuCiel"
         android:text="@string/suivant"
         android:onClick="pageSuivante"/>
         <!-- voir res/values/styles-->

@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         android:textStyle="bold"
         android:layout_marginBottom="20dp"
-        android:textColor="@color/jaune"/>
+        android:textColor="@color/vert"/>
 
     <!-- Nom du médicament -->
     <EditText

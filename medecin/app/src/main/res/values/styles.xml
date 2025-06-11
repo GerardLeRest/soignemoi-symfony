@@ -10,8 +10,8 @@
 
     <!-- Style personnalisé pour les boutons de l'application -->
     <style name="Widget.Button.Custom" parent="Widget.MaterialComponents.Button">
-        <item name="android:backgroundTint">@color/jaune</item>
-        <item name="android:textColor">@color/noire</item>
+        <item name="android:backgroundTint">@color/bleuCiel</item>
+        <item name="android:textColor">@color/blanche</item>
     </style>
 
 </resources>
