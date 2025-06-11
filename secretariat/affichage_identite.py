@@ -28,11 +28,13 @@ class AffichageIdentite(QDialog):
 
          # Force le comportement de fenêtre indépendante
         self.setWindowFlag(Qt.Window)
+
+        #self.table.itemDoubleClicked.connect(self.identite)
          
         # couleurs de selection blanc sur orange 
         self.table.setStyleSheet(
             "QTableWidget::item:selected {"
-            "background-color: #FFB25F;"  # Vert foncé, par exemple
+            "background-color: #446069;"  # Vert foncé, par exemple
             "color: white;"               # Texte blanc sur fond sélectionné
             "}"
 )
@@ -52,7 +54,7 @@ class AffichageIdentite(QDialog):
         # Style en-tête
         self.table.setStyleSheet(
             "QHeaderView::section {"
-            "background-color: #4F7F67;"
+            "background-color: #204964;"
             "color: white;"
             "font-weight: bold;"
             "padding: 4px;"
@@ -74,9 +76,9 @@ class AffichageIdentite(QDialog):
                 item = QTableWidgetItem(value)
                 # Alternance de couleur (comme odd/even row)
                 if i % 2 == 0:
-                    item.setBackground(QColor("#CED4DA"))  # ligne paire
+                    item.setBackground(QColor("#FFFFFF"))  # ligne paire
                 else:
-                    item.setBackground(QColor("#69927E"))  # ligne impaire
+                    item.setBackground(QColor("#1977CC"))  # ligne impaire
                 self.table.setItem(i, j, item)
 
     def identite(self) -> None:
@@ -96,7 +98,6 @@ class AffichageIdentite(QDialog):
             print("ID invalide ou cellule vide :", e)
             return
         
-
         print("ID sélectionné :", id)
         id_text = selected_items[0].text().strip()
         id = int(id_text)
@@ -107,4 +108,5 @@ class AffichageIdentite(QDialog):
 
         details = AffichageDetails(identite, id) #None : séparer la fenêtre d'application et cette fenêtre détails
         details.setWindowFlag(Qt.Window)  # Pour une vraie fenêtre indépendante
-        details.exec()  # Affichage non-bloquant
+        details.show()
+        details.exec()

@@ -6,16 +6,17 @@ class Acquisition:
 
     def recuperation_donnees_clic(self, record_id):
         """
-        Récupération des données depuis le site de Soignemoi.
+        Récupération des données (détails) depuis le site de Soignemoi.
         retourne une liste de dictionnaire
         """
-        url_complete = f"'http://localhost:8000/details/{record_id}"
+        self.listes_donnees=[]
+        url_complete = f"http://www.soignemoi.net/details/{record_id}"
         try:
             response = requests.get(url_complete)
             if response.status_code == 200:
-                listes_donnees = response.json()
-                print(listes_donnees)
-                return listes_donnees
+                self.listes_donnees = response.json()
+                print(self.listes_donnees)
+                return self.listes_donnees
             else:
                 print(f"Erreur lors de la récupération des données !: {response.status_code}")
                 return None

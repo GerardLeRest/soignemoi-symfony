@@ -54,19 +54,19 @@ class Secretariat (QWidget):
     def tous(self)->None:
         """affichage des donnéesde tous les patients"""
         acquisition = Acquisition()
-        donnees = acquisition.recuperation_donnees_bouton('http://localhost:8000/tous')
+        donnees = acquisition.recuperation_donnees_bouton('http://www.soignemoi.net/tous')
         self.affichage_donnees("tous", donnees)
         
     def sorties(self)->None:
         """affichage_des donnees de tous les patients sortants"""
         acquisition = Acquisition()
-        donnees = acquisition.recuperation_donnees_bouton('http://localhost:8000/sorties')
+        donnees = acquisition.recuperation_donnees_bouton('http://www.soignemoi.net/sorties')
         self.affichage_donnees("sorties", donnees)
         
     def entrees(self)->None:
         """affichage_des donnees de tous les patients entrants"""
         acquisition = Acquisition()
-        donnees = acquisition.recuperation_donnees_bouton('http://localhost:8000/entrees')
+        donnees = acquisition.recuperation_donnees_bouton('http://www.soignemoi.net/entrees')
         self.affichage_donnees("entrees", donnees)
         
     def affichage_donnees(self, titre_fenetre, patients)->None:
@@ -112,7 +112,7 @@ if __name__ == '__main__':
 
     QTableWidget {
         gridline-color: #dcdcdc;
-        selection-background-color: #f39c12;
+        selection-background-color: ##204964;
     }
     """)
     
