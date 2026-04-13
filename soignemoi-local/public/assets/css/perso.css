@@ -1,7 +1,17 @@
 .bouton-perso {
-  background-color: #244964;
-  color: white;
-  padding: 8px 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  background-color: #1977cc;
+  color: #ffffff;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+
+.bouton-perso:hover {
+  background-color: #125a9c;
+  transform: scale(1.05);
 }
