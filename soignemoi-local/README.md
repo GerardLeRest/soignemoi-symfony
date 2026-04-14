@@ -3,6 +3,7 @@
 
 1 - Création de la branche locale "soignemoi-local"
 -------------------------------------------------
+
 - Ouvrir un terminal
 - git clone git@github.com:GerardLeRest/soignemoi-symfony.git
 - git branch  (branches locales - on ne voit que la branche master)
@@ -12,8 +13,10 @@
 - on a alors accès au dossier
 
 2 - Configuration de l'application "Soignemoi-local"
-  ----------------------------------------------
+----------------------------------------------
+
 - lancer son IDE et ouvrir le projet "Soignemoi-local"
+
 - Dans le fichier .env, y mettre les variables de la base de données
   DATABASE_URL="mysql://utilisateur:motDePasse@127.0.0.1:3306/nomDeLaBDD?serverVersion=8.0.40-0ubuntu0.24.04.1&charset=utf8mb4"
 
@@ -21,6 +24,10 @@
 
 3 - Mise en place sur le serveur
 ---------------------------------
+
 - déplacer le dossier soignemoi-local dans /var/www/html
 - à partir du document Configuration_Serveur-local (branche main), configurer le serveur PHP-FPM - Apache2. Source: https://symfony.com/doc/current/setup/web_server_configuration.html
 - http://localhost/soignemoi-local/formulaireMedecin permet de rentrer les information d'un medecin.
+
+
+**SITE INTERNET**: www.soignemoi.net
