@@ -979,7 +979,6 @@ section,
   transition: all 0.3s ease;
 }
 
-
 .hero .content .why-box .more-btn i {
   font-size: 14px;
 }
@@ -992,8 +991,8 @@ section,
 .hero .content .icon-box {
   text-align: center;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: none;
+  background: #f1f3f5;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   padding: 40px 30px;
   width: 100%;
   cursor: default;
@@ -1010,11 +1009,9 @@ section,
   margin: 10px 0 20px 0;
 }
 
-.hero .content .icon-box h4 {
-  font-size: 20px;
-  font-weight: 700;
-  margin: 10px 0 20px 0;
-  color: #2c4964;
+.hero .content .icon-box p {
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 /*--------------------------------------------------------------
