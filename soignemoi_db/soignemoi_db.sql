@@ -109,7 +109,7 @@ CREATE TABLE `messenger_messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`) VALUES
-(1, 'alice.durand@example.com', '[\"ROLE_USER\"]', '$2y$13$Dqw2TEN/D4R2BOettMKw0.0ZAQVQaoRHhvpLojjr7zrZzh1Xvbege'),
+(1, 'alice.durand@example.com', '[\"ROLE_USER\"]', '$2y$13$1mZ318NsbNP6/IE.4kLgquchL0QSbOYwHGzpSXazLoL.GDJymP6.2'),
 (2, 'ahmed.alfarsi@example.com', '[\"ROLE_USER\"]', '$2y$13$kmNTJMAxKZ/wqGfntBKJh.NuV8eDXEvDYFSmdIGotIKHjJ7PsTrtO'),
 (3, 'kofi.adjoa@example.com', '[\"ROLE_USER\"]', '$2y$13$zoGYUcOa4eJ/a/ODanj4.eWuMag6xdEJFUjQVP49GYgiaNVdUF2dq'),
 (4, 'emilie.martin@example.com', '[\"ROLE_USER\"]', '$2y$13$dhxyAYVjrfp7.dLURsBxouvX3V9FKNaG7bdr18YoCEZeHkPp80JkW'),
@@ -119,8 +119,8 @@ INSERT INTO `user` (`id`, `email`, `roles`, `password`) VALUES
 (8, 'louis.lerest@orange.fr', '[\"ROLE_USER\"]', '$2y$13$mjTHvWzi2IfxPwCgH8iZ4.p7yc2e.YsSR/IOfaoq2dLiWK0tBCHf2'),
 (9, 'daniel.messager@orange.fr', '[\"ROLE_USER\"]', '$2y$13$02f2O6DyXkyWGJ.V3Xis8.9D6u0eobSWwNkiyqfcV5pdYUwaSY6Be'),
 (10, 'albert.einstein@orange.fr', '[\"ROLE_USER\"]', '$2y$13$8u7bKpZCAqJzt4ezGegHq.jHX42p1Unoa1JU2XB1n5PocqZO9R.am'),
-(11, 'samuel.celia@orange.fr', '[\"ROLE_USER\"]', '$2y$13$zuarzj69rBgqgW7WQaDy9OX.NVRge4/h01Vbw6SdUpRn.kCRWRPwK'),
-(12, 'sameul.celia@orange.fr', '[\"ROLE_USER\"]', '$2y$13$aDa/n2Ne7XeQqXpaksR/euIAxh4.RraSqCFIWiB8cXXOKYqSMA9Wm'),
-(13, 'nicolas.paul@free.fr', '[\"ROLE_USER\"]', '$2y$13$zFEChdrqyWYcGdnaquheVulG4V/k8h6IG7gCNYTlOX.UtLV3lXJma');
+(11, 'samuel.celia@orange.fr', '[\"ROLE_USER\"]', '$2y$13$5efcbz0WHK23nfjHf9B78OrksNrI8eIwwRW/bFvHTr9PjHThKrfmS'),
+(12, 'sameul.celia@orange.fr', '[\"ROLE_USER\"]', '$2y$13$D8S12ywrTuaFlVurFuAfI.0aswhCEvSIr4AXN/P1rHMYcmhrr/2aa'),
+(13, 'nicolas.paul@free.fr', '[\"ROLE_USER\"]', '$2y$13$2hTENj1DiopkUXpn7/0FXO5LIqSrZDPFR8kkGYiIJJX4FDJ3KYuEi');
 
 SET foreign_key_checks = 1;
