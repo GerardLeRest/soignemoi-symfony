@@ -1,3 +1,11 @@
-.myprojectenv
-__pycache__
-.vscode
+__pycache__/
+*.pyc
+
+.vscode/
+
+venv/
+.venv/
+myenv/
+.my_env/
+.mon_env/
+.myprojectenv/
