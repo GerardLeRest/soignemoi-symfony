@@ -9,7 +9,7 @@ class ContenuFrame(QFrame):
         # initialisation de la classe parente
         super().__init__(fenetre)
         self.label_secretaire = QLabel(self)
-        # autre tchnique)
+        # autre technique)
         # image = QPixmap("images/secretaire_300_300.png"
         # self.label_secretaire.setPixmap(image)
         self.label_secretaire.setPixmap(QPixmap("images/secretaire_300_300.png"))
