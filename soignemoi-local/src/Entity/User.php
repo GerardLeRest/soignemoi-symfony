@@ -63,6 +63,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     // Côté inverse de la relation OneToOne
     #[ORM\OneToOne(targetEntity: Patient::class, mappedBy: 'user')]
     private ?Patient $patient = null;
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Medecin $medecin = null;
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Secretaire $secretaire = null;
     
     public function getId(): ?int
     {
@@ -129,12 +135,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPatient() : Patient {
+    public function getPatient(): ?Patient
+    {
         return $this->patient;
     }
 
-    public function setPatient(Patient $patient): static{
+    public function setPatient(Patient $patient): static
+    {
+        if ($patient->getUser() !== $this) {
+            $patient->setUser($this);
+        }
         $this->patient = $patient;
+
         return $this;
     }
 
@@ -145,5 +157,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getMedecin(): ?Medecin
+    {
+        return $this->medecin;
+    }
+
+    public function setMedecin(Medecin $medecin): static
+    {
+        // set the owning side of the relation if necessary
+        if ($medecin->getUser() !== $this) {
+            $medecin->setUser($this);
+        }
+        $this->medecin = $medecin;
+        return $this;
+    }
+
+    public function getSecretaire(): ?Secretaire
+    {
+        return $this->secretaire;
+    }
+
+    public function setSecretaire(Secretaire $secretaire): static
+    {
+        if ($secretaire->getUser() !== $this) {
+            $secretaire->setUser($this);
+        }
+        $this->secretaire = $secretaire;
+        return $this;
     }
 }

@@ -22,3 +22,5 @@
 ###> symfony/asset-mapper ###
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+secretariat/.mon_env/

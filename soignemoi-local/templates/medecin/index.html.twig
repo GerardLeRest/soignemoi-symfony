@@ -3,7 +3,7 @@
 {% block title %}Saisie d’un médecin{% endblock %}
 
 {% block body %}
-    <h1 class="text-center mt-4">Saisie d’un patient</h1>
+    <h1 class="text-center mt-4">Saisie d’un médecin</h1>
 
     {{ form_start(form, {'method': 'POST'}) }}
     <div class="container mt-5 mb-5 pb-5">
@@ -36,6 +36,14 @@
                         {{ form_label(form.specialite, 'Spécialité', {'label_attr': {'class': 'form-label'}}) }}
                         {{ form_widget(form.specialite, {'attr': {'class': 'form-control border-3'}}) }}
                         {{ form_errors(form.specialite) }}
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-12 mb-3">
+                        {{ form_label(form.user, 'Utilisateur', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.user, {'attr': {'class': 'form-control border-3'}}) }}
+                        {{ form_errors(form.user) }}
                     </div>
                 </div>
 
