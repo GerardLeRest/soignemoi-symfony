@@ -1,59 +1,61 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Inscription patient{% endblock %}
+
 {% block body %}
-<h1 class="text-center mt-4 mb-4">S'inscrire</h1>
+    <h1 class="text-center mt-4">Inscription patient</h1>
 
-<div class="container">
     {{ form_start(form, {'method': 'POST'}) }}
-    <div class="row">
-        <div class="col-lg-2 col-md-2"></div>
-        <div class="col-lg-8 col-md-8">
-            <div class="row mb-3">
-                <div class="mb-3 col-lg-6">
-                    {{ form_label(form.patientForm.prenom, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
-                    {{ form_widget(form.patientForm.prenom, {'attr': {'class': 'form-control border-3'}}) }}
-                    {{ form_errors(form.patientForm.prenom) }}
+
+    <div class="container mt-5 mb-5 pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 formulaire jaune">
+
+                <div class="row mb-3">
+                    <div class="col-lg-6 col-md-6 mb-3">
+                        {{ form_label(form.userForm.prenom, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.userForm.prenom, {'attr': {'class': 'form-control border-3'}}) }}
+                        {{ form_errors(form.userForm.prenom) }}
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 mb-3">
+                        {{ form_label(form.userForm.nom, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.userForm.nom, {'attr': {'class': 'form-control border-3'}}) }}
+                        {{ form_errors(form.userForm.nom) }}
+                    </div>
                 </div>
-                <div class="mb-3 col-lg-6">
-                    {{ form_label(form.patientForm.nom, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
-                    {{ form_widget(form.patientForm.nom, {'attr': {'class': 'form-control border-3'}}) }}
-                    {{ form_errors(form.patientForm.nom) }}
+
+                <div class="row mb-3">
+                    <div class="col-12 mb-3">
+                        {{ form_label(form.userForm.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.userForm.email, {'attr': {'class': 'form-control border-3'}}) }}
+                        {{ form_errors(form.userForm.email) }}
+                    </div>
                 </div>
-            </div>
-           
-            <div class="mb-3 col-lg-8 mx-auto">
-                {{ form_label(form.patientForm.adressePostale, 'Adresse Postale', {'label_attr': {'class': 'form-label'}}) }}
-                {{ form_widget(form.patientForm.adressePostale, {'attr': {'class': 'form-control border-3'}}) }}
-                {{ form_errors(form.patientForm.adressePostale) }}
-            </div>
 
-            <div class="mb-3 col-lg-8 mx-auto">
-                {{ form_label(form.userForm.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
-                {{ form_widget(form.userForm.email, {'attr': {'class': 'form-control border-3'}}) }}
-                {{ form_errors(form.userForm.email) }}
-            </div>
+                <div class="row mb-3">
+                    <div class="col-12 mb-3">
+                        {{ form_label(form.userForm.password, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.userForm.password, {'attr': {'class': 'form-control border-3'}}) }}
+                        {{ form_errors(form.userForm.password) }}
+                    </div>
+                </div>
 
-            <div class="mb-3 col-lg-8 mx-auto">
-                {{ form_label(form.userForm.password, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
-                {{ form_widget(form.userForm.password, {'attr': {'class': 'form-control border-3'}}) }}
-                {{ form_errors(form.userForm.password) }}
-            </div>
-              
+                <div class="row mb-3">
+                    <div class="col-12 mb-3">
+                        {{ form_label(form.patientForm.adressePostale, 'Adresse postale', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.patientForm.adressePostale, {'attr': {'class': 'form-control border-3'}}) }}
+                        {{ form_errors(form.patientForm.adressePostale) }}
+                    </div>
+                </div>
 
-            <div class="text-center">
-                <button type="submit" class="btn bouton-perso">Valider</button>
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn bouton-perso">Valider</button>
+                </div>
+
             </div>
         </div>
-        <div class="col-lg-2 col-md-2"></div>
     </div>
-    {{ form_end(form) }}
 
-    {# Photo centrée #}
-    <div class="d-flex justify-content-center mb-5 mt-5">
-        <img src="{{ asset('assets/img/doctors/doctors-2.jpg') }}"
-             alt="Illustration inscription"
-             class="rounded shadow"
-             style="height: 300px; object-fit: cover;">
-    </div>
-</div>
+    {{ form_end(form) }}
 {% endblock %}

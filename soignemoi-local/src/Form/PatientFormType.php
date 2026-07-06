@@ -7,30 +7,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class PatientFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('prenom', TextType::class, [
-                'label' => 'Prénom',
-                    //attr: éléments personnels
-                'attr' => [
-                    'placeholder' => 'Entrez votre prénom',
-                    // class bootstap pour les formulaires
-                    'class' => 'form-control',    
-                ] 
-            ])
-            ->add('nom', TextType::class, [
-                'label' => 'Nom',
-                'attr' => [
-                    'placeholder' => 'Entrez votre nom',
-                    'class' => 'form-control',    
-                ] 
-            ])
             ->add('adressePostale', TextType::class, [
                 'label' => 'Adresse postale',
                 'attr' => [

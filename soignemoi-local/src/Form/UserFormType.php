@@ -15,30 +15,40 @@ class UserFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', TextType::class, [
+            ->add('prenom', TextType::class, [
+                'label' => 'Prénom',
+                'attr' => [
+                    'placeholder' => 'Entrez votre prénom',
+                    'class' => 'form-control',
+                ]
+            ])
+            ->add('nom', TextType::class, [
+                'label' => 'Nom',
+                'attr' => [
+                    'placeholder' => 'Entrez votre nom',
+                    'class' => 'form-control',
+                ]
+            ])
+            ->add('email', EmailType::class, [
                 'label' => 'Email',
-                    //attr: éléments personnels
                 'attr' => [
                     'placeholder' => 'Entrez votre email',
-                    // class bootstap pour les formulaires
-                    'class' => 'form-control',    
-                ] 
+                    'class' => 'form-control',
+                ]
             ])
             ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe',
-                    // attr: éléments personnels
                 'attr' => [
-                    'placeholder' => "Entrer votre mot de passe",
-                    // class bootstrap pour les formulaires
+                    'placeholder' => 'Entrez votre mot de passe',
                     'class' => 'form-control',
-                ]    
-                ]);
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => user::class,
+            'data_class' => User::class,
         ]);
     }
 }

@@ -2,9 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Patient;
 use App\Entity\Sejour;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -28,14 +26,14 @@ class SejourFormType extends AbstractType
             ])
             ->add('dateFin', DateType::class, [
                 'label' => 'Date de fin',
-                'required' => false,    // saisie onn ogligatoire pour valider le NULL
+                'required' => false, // Champ non obligatoire pour permettre une valeur NULL
                 'attr' => [
                     'placeholder' => 'Entrez la date de fin',
                     'class' => 'form-control',    
                 ] 
             ])
             ->add('motifSejour', TextareaType::class, [
-                'label' => 'Motif du sjour',
+                'label' => 'Motif du séjour',
                 'attr' => [
                     'placeholder' => 'Entrez le motif du séjour',
                     'class' => 'form-control',    
