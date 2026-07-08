@@ -19,27 +19,6 @@ class Patient
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    //attaché au formulaire
-    #[Assert\NotBlank(message: "Le prénom est obligatoire.")]
-    #[Assert\Length(
-        min: 2,
-        max: 50,
-        minMessage: "Le prénom doit contenir au moins {{ limit }} caractères.",
-        maxMessage: "Le prénom ne peut pas contenir plus de {{ limit }} caractères."
-    )]
-    private ?string $prenom = null;
-
-    #[ORM\Column(length: 100)]
-    //attaché au formulaire
-    #[Assert\Length(
-        min: 2,
-        max: 50,
-        minMessage: "Le nom doit contenir au moins {{ limit }} caractères.",
-        maxMessage: "Le nom ne peut pas contenir plus de {{ limit }} caractères."
-    )]
-    private ?string $nom = null;
-
     #[ORM\Column(length: 100)]
     //attaché au formulaire
     #[Assert\NotBlank(message: "L'adresse est obligatoire.")]
@@ -70,39 +49,36 @@ class Patient
     #[ORM\JoinColumn(name:'user_id', nullable: false)] // Colonne de jointure (user_id)
     private ?User $user = null;
 
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: "Le prénom est obligatoire.")]
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: "Le prénom doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le prénom ne peut pas contenir plus de {{ limit }} caractères."
+    )]
+    private ?string $prenom = null;
+
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: "Le nom est obligatoire.")]
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: "Le nom doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le nom ne peut pas contenir plus de {{ limit }} caractères."
+    )]
+    private ?string $nom = null;
+
     public function __construct()
     {
         $this->sejours = new ArrayCollection();
-        $this->aviss = new ArrayCollection();  
+        $this->aviss = new ArrayCollection();
+        $this->prescriptions = new ArrayCollection();  
     }
     
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): static
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): static
-    {
-        $this->nom = $nom;
-
-        return $this;
     }
 
     public function getAdressePostale(): ?string
@@ -200,6 +176,30 @@ class Patient
                 $prescription->setPatient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): static
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
 
         return $this;
     }

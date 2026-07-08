@@ -1,16 +1,15 @@
 <?php
+// src/Form/PatientInfosFormType.php
 
 namespace App\Form;
 
-use App\Entity\User;
-use App\Entity\Medecin;
+use App\Entity\Patient;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class MedecinFormType extends AbstractType
+class PatientInfosFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -29,26 +28,19 @@ class MedecinFormType extends AbstractType
                     'class' => 'form-control',  
                 ]   
             ])
-            ->add('matricule', TextType::class, [
-                'label' =>"Matricule",
+            ->add('adressePostale', TextType::class, [
+                'label' =>"Prénom",
                 'attr' => [ 
-                    'placeholder' => 'Entrez le matricule',
+                    'placeholder' => 'Entrez l\'adresse',
                     'class' => 'form-control',  
                 ]   
-            ])
-            ->add('specialite', TextType::class, [
-                'label' => 'Spécialité',
-                'attr' => [ 
-                    'placeholder' => 'Entrez la spécialité',
-                    'class' => 'form-control', 
-                ]
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Medecin::class,
+            'data_class' => Patient::class,
         ]);
     }
 }

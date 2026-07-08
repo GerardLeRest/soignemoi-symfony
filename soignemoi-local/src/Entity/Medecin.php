@@ -19,28 +19,6 @@ class Medecin
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    //attaché au formulaire
-    #[Assert\NotBlank(message: "Le prénom est obligatoire.")]
-    #[Assert\Length(
-        min: 2,
-        max: 50,
-        minMessage: "Le prénom doit contenir au moins {{ limit }} caractères.",
-        maxMessage: "Le prénom ne peut pas contenir plus de {{ limit }} caractères."
-    )]
-    private ?string $prenom = null;
-    
-    #[ORM\Column(length: 100)]
-     //attaché au formulaire
-    #[Assert\NotBlank(message: "Le nom est obligatoire.")]
-    #[Assert\Length(
-        min: 2,
-        max: 50,
-        minMessage: "Le nom doit contenir au moins {{ limit }} caractères.",
-        maxMessage: "Le nom ne peut pas contenir plus de {{ limit }} caractères."
-    )]
-    private ?string $nom = null;
-
-    #[ORM\Column(length: 100)]
     // attaché au formulaire
     #[Assert\NotBlank(message: "Le matricule est obligatoire.")]
     #[Assert\Length(
@@ -72,6 +50,26 @@ class Medecin
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: "Le prénom est obligatoire.")]
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: "Le prénom doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le prénom ne peut pas contenir plus de {{ limit }} caractères."
+    )]
+    private ?string $prenom = null;
+
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: "Le nom est obligatoire.")]
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: "Le nom doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le nom ne peut pas contenir plus de {{ limit }} caractères."
+    )]
+    private ?string $nom = null;
+    
     public function __construct()
     {
         $this->aviss = new ArrayCollection();  // "aviss" au lieu de "avis"
@@ -81,30 +79,6 @@ class Medecin
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): static
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): static
-    {
-        $this->nom = $nom;
-
-        return $this;
     }
 
     public function getMatricule(): ?string
@@ -191,6 +165,30 @@ class Medecin
     public function setUser(User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): static
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
 
         return $this;
     }
