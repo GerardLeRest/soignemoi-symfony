@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Saisie d’un médecin{% endblock %}
+{% block title %}Saisie d’une secrétaire{% endblock %}
 
 {% block body %}
-    <h1 class="text-center mt-4">Saisie d’un médecin</h1>
+    <h1 class="text-center mt-4">Saisie d’une secretaire</h1>
 
     {{ form_start(form, {'method': 'POST'}) }}
     <div class="container mt-5 mb-5 pb-5">
@@ -11,13 +11,35 @@
             <div class="col-lg-8 col-md-10 formulaire jaune">
                 
                 <div class="row mb-3">
-                    <div class="col-12 mb-3">
-                        {{ form_label(form.user, 'Utilisateur', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.user, {'attr': {'class': 'form-control border-3'}}) }}
-                        {{ form_errors(form.user) }}
+                    <div class="col-lg-6 col-md-6 mb-3">
+                        {{ form_label(form.secretaireForm.prenom, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.secretaireForm.prenom, {'attr': {'class': 'form-control border-3'}}) }}
+                        {{ form_errors(form.secretaireForm.prenom) }}
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 mb-3">
+                        {{ form_label(form.secretaireForm.nom, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.secretaireForm.nom, {'attr': {'class': 'form-control border-3'}}) }}
+                        {{ form_errors(form.secretaireForm.nom) }}
                     </div>
                 </div>
 
+                <div class="row mb-3">
+                    <div class="col-12 mb-3">
+                        {{ form_label(form.userForm.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.userForm.email, {'attr': {'class': 'form-control border-3'}}) }}
+                        {{ form_errors(form.userForm.email) }}
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-12 mb-3">
+                        {{ form_label(form.userForm.password, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.userForm.password, {'attr': {'class': 'form-control border-3'}}) }}
+                        {{ form_errors(form.userForm.password) }}
+                    </div>
+                </div>
+                
                 <div class="text-center mt-4">
                     <button type="submit" class="btn bouton-perso">Valider</button>
                 </div>

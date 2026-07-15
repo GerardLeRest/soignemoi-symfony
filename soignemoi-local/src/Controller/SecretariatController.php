@@ -10,11 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
-use App\Entity\Sejour;
-use App\Entity\Avis;
-use App\Entity\Patient;
-use App\Repository\MedecinRepository;
-use App\Entity\Medecin;
+use App\Entity\Secretaire;
+use App\Repository\SecretaireRepository;
 
 final class SecretariatController extends AbstractController
 {

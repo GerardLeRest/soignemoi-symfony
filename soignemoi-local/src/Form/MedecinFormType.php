@@ -1,54 +1,32 @@
 <?php
 
+// src/Form/MedecinFormType.php
+
 namespace App\Form;
 
-use App\Entity\User;
-use App\Entity\Medecin;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class MedecinFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('prenom', TextType::class, [
-                'label' =>"Prénom",
-                'attr' => [ 
-                    'placeholder' => 'Entrez le prénom',
-                    'class' => 'form-control',  
-                ]   
+            //sous formulaire du médecin
+            ->add('medecinForm', MedecinInfosFormType::class, [
+                'label' => false,
             ])
-            ->add('nom', TextType::class, [
-                'label' =>"Nom",
-                'attr' => [ 
-                    'placeholder' => 'Entrez le nom',
-                    'class' => 'form-control',  
-                ]   
-            ])
-            ->add('matricule', TextType::class, [
-                'label' =>"Matricule",
-                'attr' => [ 
-                    'placeholder' => 'Entrez le matricule',
-                    'class' => 'form-control',  
-                ]   
-            ])
-            ->add('specialite', TextType::class, [
-                'label' => 'Spécialité',
-                'attr' => [ 
-                    'placeholder' => 'Entrez la spécialité',
-                    'class' => 'form-control', 
-                ]
+            //sous formulaire de user
+            ->add('userForm', UserFormType::class, [
+                'label' => false,
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Medecin::class,
+            'data_class' => null,
         ]);
     }
 }
