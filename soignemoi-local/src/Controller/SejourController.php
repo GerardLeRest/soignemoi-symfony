@@ -16,7 +16,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 final class SejourController extends AbstractController
 {
     #[Route('/sejour', name: 'app_formulaire_sejour')]
-    #[IsGranted('ROLE_USER')]
+    #[IsGranted('ROLE_PATIENT')]
     public function new(Request $request, EntityManagerInterface $emi): Response
     {
         // Crée une nouvelle instance de Sejour
@@ -28,21 +28,25 @@ final class SejourController extends AbstractController
 
         // Vérifie si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
-            //récupération de l'utilsateur connecté
-             $user = $this->getuser(); 
-             if ($user instanceof User) {
-                // Récupérer l'ID de l'utilisateur connecté
-                $userId = $user->getId();
-            } else {
+
+            // Récupération de l'utilisateur connecté
+            $user = $this->getUser();
+
+            if (!$user instanceof User) {
                 // Utilisateur non connecté, on renvoie une erreur
                 throw $this->createAccessDeniedException('Utilisateur non connecté.');
             }
 
-            // récupération du patient correspondant au user
-            $patient = $emi->find(Patient::class,$userId); 
-            if ($patient) {
-                $sejour->setPatient($patient);
+            // Récupération du patient correspondant à l'utilisateur connecté
+            $patient = $emi->getRepository(Patient::class)
+                           ->findOneBy(['user' => $user]);
+
+            if (!$patient) {
+                throw $this->createNotFoundException('Aucun patient associé à cet utilisateur.');
             }
+
+            // Association du patient au séjour
+            $sejour->setPatient($patient);
 
             // Enregistrement en base de données
             $emi->persist($sejour);
