@@ -27,6 +27,7 @@ class Fenetre(QWidget):
         self.champ_email.returnPressed.connect(self.suite)
         layout.addWidget(self.champ_email, 1, 1)
         self.champ_mot_de_passe = QLineEdit()
+        self.champ_mot_de_passe.setEchoMode(QLineEdit.Password)
         self.champ_mot_de_passe.returnPressed.connect(self.fin)
         layout.addWidget(self.champ_mot_de_passe, 2, 1)
         layout.setSpacing(15)
