@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 //use Doctrine\ORM\EntityManager;
+use App\Entity\Sejour;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
