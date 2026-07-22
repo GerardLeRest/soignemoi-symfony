@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QApplication, QWidget, QGridLayout, QLabel, QLineEdit, QPushButton, QMessageBox, QSizePolicy
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap
-import sys
+import sys, requests
 from secretariat import Secretariat
 
 class Fenetre(QWidget):  
@@ -19,16 +19,16 @@ class Fenetre(QWidget):
         self.style_titre()
         layout.setSpacing(25) # espace vertical
         # labels identification
-        label_prenom = QLabel("Prénom: ")
-        layout.addWidget(label_prenom, 1, 0)
-        label_nom = QLabel("Nom: ")
-        layout.addWidget(label_nom, 2, 0)
-        self.champ_prenom = QLineEdit()
-        self.champ_prenom.returnPressed.connect(self.suite)
-        layout.addWidget(self.champ_prenom, 1, 1)
-        self.champ_nom = QLineEdit()
-        self.champ_nom.returnPressed.connect(self.fin)
-        layout.addWidget(self.champ_nom, 2, 1)
+        label_email = QLabel("Email: ")
+        layout.addWidget(label_email, 1, 0)
+        label_mot_de_passe = QLabel("Mot de passe: ")
+        layout.addWidget(label_mot_de_passe, 2, 0)
+        self.champ_email = QLineEdit()
+        self.champ_email.returnPressed.connect(self.suite)
+        layout.addWidget(self.champ_email, 1, 1)
+        self.champ_mot_de_passe = QLineEdit()
+        self.champ_mot_de_passe.returnPressed.connect(self.fin)
+        layout.addWidget(self.champ_mot_de_passe, 2, 1)
         layout.setSpacing(15)
         self.style_lineedit()
         # bouton
@@ -49,7 +49,7 @@ class Fenetre(QWidget):
         # afficher l'interface
         
         self.show()
-        self.champ_prenom.setFocus()
+        self.champ_email.setFocus()
 
     def style_titre(self) -> None:
         """habillage du titre"""
@@ -90,30 +90,64 @@ class Fenetre(QWidget):
         )
 
     def recuperation_donnees(self) -> None:
-        """récupération du nom et du prénom"""
-        print ("données validées")
-        print (self.champ_prenom.text())
-        print (self.champ_nom.text())
-        prenom = self.champ_prenom.text().strip()
-        nom = self.champ_nom.text().strip()
-        if prenom == "Gérard" and nom == "Le Rest":
-            print("succès")
-            self.secretariat = Secretariat() # création de la fenêtre du secretariat
-            self.secretariat.show()
-            self.close() # destruction de la fenetre de'identification
-        else:
+        """récupération du mot_de_passe et de lemail"""
+
+        email = self.champ_email.text().strip()
+        mot_de_passe = self.champ_mot_de_passe.text().strip()
+        
+        if not email or not mot_de_passe:
             QMessageBox.warning(
                 self,
+                "Identification",
+                "Veuillez saisir votre email et votre mot de passe."
+            )
+            return
+        try:
+            reponse = requests.post(
+                "http://127.0.0.1:8000/api/secretariat/login",
+                json={
+                    "email": email,
+                    "password": mot_de_passe
+                },
+                timeout=5
+            )
+
+            donnees = reponse.json()
+
+            if reponse.status_code == 200 and donnees.get("succes"):
+                QMessageBox.information(
+                    self,
+                    "Identification",
+                    "Identification réussie."
+                )
+
+                self.secretariat = Secretariat()
+                self.secretariat.show()
+                self.hide()
+                        
+            else:
+                QMessageBox.warning(
+                    self,
+                    "Identification",
+                    donnees.get(
+                    "message",
+                    "Impossible de vous identifier."
+                    )
+                )
+
+        except requests.RequestException:
+            QMessageBox.critical(
+                self,
                 "Connexion",
-                "Prénom ou nom incorrect."
+                "Impossible de contacter le serveur Symfony."
             )
 
     def suite(self) -> None:
        """passer du premier champ au deuxième champ"""
-       self.champ_nom.setFocus()
+       self.champ_mot_de_passe.setFocus()
 
     def fin(self) -> None:
-        """valider les champs si on appuie sur la touche entrée dans le champ nom"""
+        """valider les champs si on appuie sur la touche entrée dans le champ mot_de_passe"""
         self.recuperation_donnees()
 
 if __name__ == "__main__":  

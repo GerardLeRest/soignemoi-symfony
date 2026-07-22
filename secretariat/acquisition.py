@@ -10,7 +10,8 @@ class Acquisition:
         retourne une liste de dictionnaire
         """
         self.listes_donnees=[]
-        url_complete = f"http://www.soignemoi.net/details/{record_id}"
+        # url_complete = f"http://www.soignemoi.net/details/{record_id}"
+        url_complete = f"http://localhost:8000/details/{record_id}"
         try:
             response = requests.get(url_complete)
             if response.status_code == 200:

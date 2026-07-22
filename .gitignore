@@ -1,0 +1,19 @@
+# Symfony
+soignemoi-local/vendor/
+soignemoi-local/var/cache/
+soignemoi-local/var/log/
+
+# Python
+secretariat/__pycache__/
+secretariat/*.pyc
+
+# Environnements
+.env.local
+.env.*.local
+
+# Éditeurs et système
+.vscode/
+.idea/
+.DS_Store
+
+soignemoi-local/assets/vendor/
